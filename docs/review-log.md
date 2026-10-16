@@ -35,6 +35,21 @@ there is no training data of that kind for Cornwall in hand, and the
 scores would be exactly the unsourced numbers the first reviewer marked
 provenance 9/10 for not producing.
 
+## Review 2 → commit 4
+
+| Finding | Fix |
+| --- | --- |
+| Company tax path was a flat 25% with no marginal relief or extraction tax; its cash-on-cash could be mistaken for a personal return | Individuals only: `Applicant` rejects `limited_company: true` with the reason. No company path exists to be wrong. |
+| An unknown council tax band produced a £0 charge and still fed the headline returns | The short-let assessment is reported as incomplete (missing input) and excluded from the ranking; the year function raises rather than costing at zero. |
+| `locality_score` gave 0.7 to any sale without a matching sector, including sales in other districts | Districts compared explicitly: same sector 1.0, same district 0.7, unknown postcode 0.4, different district 0.1. Tests for all four and for a mixed-district set. |
+| `interest_only` flag existed but repayment was never modelled | Only `true` accepted, with the reason. |
+| Single point estimate fragile near break-even | One-at-a-time sensitivity grid on every short-let assessment (occupancy, nightly rate, mortgage rate, operating costs). |
+| Testing gaps: malformed inputs, extremes, independent arithmetic check | 14 new tests, including a line-by-line recomputation of the St Eval HL5-75 year from first principles (which caught the half-up vs banker's rounding difference between the test and the model, resolved in favour of the model's documented half-up). |
+
+Reviewer's verdict on this round: 8/10, publishable as a portfolio project
+demonstrating AI-assisted engineering with critical review; not a validated
+investment calculator. The README now says exactly that.
+
 ## Reviewer's standing caveat, kept here on purpose
 
 Passing tests prove the code behaves as tested. They do not establish that

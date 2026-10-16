@@ -90,6 +90,16 @@ def render(results: list[Result], comps: dict[str, ComparablesResult] | None = N
                 f"    mortgage interest {gbp(y.mortgage_interest)}  →  pre-tax {gbp(y.pre_tax_cash_flow)}, tax {gbp(y.tax)}, after-tax {gbp(y.after_tax_cash_flow)}"
             )
             lines.extend(returns_lines(r.strategy, "YEAR 1" if r.strategy == "short_let" else "RETURNS", ret))
+            if a.sensitivity is not None:
+                from property_assessor.sensitivity import Sensitivity
+
+                sens = a.sensitivity
+                assert isinstance(sens, Sensitivity)
+                lines.append(
+                    f"    SENSITIVITY (year 1 after-tax {gbp(sens.base_after_tax)}; one input moved at a time, everything else held)"
+                )
+                for row in sens.rows:
+                    lines.append(f"      {row.input:16} {row.change:26} → {gbp(row.after_tax_cash_flow):>9}  ({row.delta:+,.0f})")
             for sc in a.scenarios:
                 ys = sc.year
                 lines.append(

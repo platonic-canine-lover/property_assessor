@@ -5,7 +5,7 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import Literal
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 from property_assessor.sourced import Sourced
 
@@ -63,7 +63,24 @@ class Applicant(BaseModel):
     gross_earned_income: Sourced[Decimal]
     owns_other_residential_property: bool = True
     uk_resident: bool = True
-    limited_company: bool = False
+    limited_company: bool = Field(default=False, description="Company taxation is NOT modelled; only False is accepted")
     portfolio_landlord: bool = False
     deposit_fraction: Decimal = Field(default=Decimal("0.25"), gt=0, lt=1)
-    interest_only: bool = True
+    interest_only: bool = Field(default=True, description="Repayment mortgages are NOT modelled; only True is accepted")
+
+    @field_validator("limited_company")
+    @classmethod
+    def _individuals_only(cls, v: bool) -> bool:
+        if v:
+            raise ValueError(
+                "limited_company=true is not supported: corporation tax, marginal relief and extraction tax are not modelled, "
+                "so a company figure would be cash retained in the company, not a personal return. This tool covers individual landlords."
+            )
+        return v
+
+    @field_validator("interest_only")
+    @classmethod
+    def _interest_only_only(cls, v: bool) -> bool:
+        if not v:
+            raise ValueError("interest_only=false is not supported: capital repayment is not modelled. Set interest_only: true.")
+        return v

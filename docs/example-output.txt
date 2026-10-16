@@ -106,6 +106,15 @@ Little Carharrack, Redruth (2-bed bungalow, 2024)  (TR16, Redruth)  https://www.
         met      available nights, next 12 months (owner's plan): 300 vs 140 required [assumption]
         unknown  let nights, last 12 months: no evidence vs 70 required [no evidence]
     basis: assumption (weakest input); inputs: adr=242 [published 2026-10-13]; occupancy=0.57 [published 2026-10-13]; fx=1.30 [assumption]; management=0.18 [assumption]; cleaning=80 [assumption]
+    SENSITIVITY (year 1 after-tax -£11,163; one input moved at a time, everything else held)
+      occupancy        -15% points (42%)          →  -£15,893  (-4,730)
+      occupancy        -10% points (47%)          →  -£14,338  (-3,175)
+      occupancy        +10% points (67%)          →   -£7,989  (+3,175)
+      nightly rate     -15%                       →  -£14,370  (-3,207)
+      nightly rate     +15%                       →   -£7,957  (+3,207)
+      mortgage rate    +1.00% points (7.50%)      →  -£14,913  (-3,750)
+      mortgage rate    +2.00% points (8.50%)      →  -£18,663  (-7,500)
+      operating costs  +20%                       →  -£14,006  (-2,842)
     STEADY STATE: operating £18,926 → pre-tax -£4,572, tax £2,907, after-tax -£7,478
     STEADY STATE  gross yield 7.8%  net yield 4.0%  cash-on-cash -4.2%, break-even occupancy 68.6%
       rates regime: business rates (would qualify after a year at 208 let nights, if the plan holds)
@@ -136,6 +145,15 @@ Little Carharrack, Redruth (2-bed bungalow, 2024)  (TR16, Redruth)  https://www.
         met      available nights, next 12 months (owner's plan): 300 vs 140 required [assumption]
         unknown  let nights, last 12 months: no evidence vs 70 required [no evidence]
     basis: assumption (weakest input); inputs: adr=242 [published 2026-10-13]; occupancy=0.57 [published 2026-10-13]; fx=1.30 [assumption]; management=0.18 [assumption]; cleaning=80 [assumption]
+    SENSITIVITY (year 1 after-tax -£10,001; one input moved at a time, everything else held)
+      occupancy        -15% points (42%)          →  -£14,731  (-4,730)
+      occupancy        -10% points (47%)          →  -£13,175  (-3,175)
+      occupancy        +10% points (67%)          →   -£6,826  (+3,175)
+      nightly rate     -15%                       →  -£13,208  (-3,207)
+      nightly rate     +15%                       →   -£6,794  (+3,207)
+      mortgage rate    +1.00% points (7.19%)      →  -£13,751  (-3,750)
+      mortgage rate    +2.00% points (8.19%)      →  -£17,501  (-7,500)
+      operating costs  +20%                       →  -£12,843  (-2,842)
     STEADY STATE: operating £18,926 → pre-tax -£3,409, tax £2,907, after-tax -£6,316
     STEADY STATE  gross yield 7.8%  net yield 4.0%  cash-on-cash -3.5%, break-even occupancy 65.6%
       rates regime: business rates (would qualify after a year at 208 let nights, if the plan holds)
@@ -254,6 +272,15 @@ Vildebeest Road, St Eval, Wadebridge (3-bed semi)  (PL27, St Eval)  https://www.
         met      available nights, next 12 months (owner's plan): 300 vs 140 required [assumption]
         unknown  let nights, last 12 months: no evidence vs 70 required [no evidence]
     basis: assumption (weakest input); inputs: adr=242 [published 2026-10-13]; occupancy=0.57 [published 2026-10-13]; fx=1.30 [assumption]; management=0.18 [assumption]; cleaning=80 [assumption]
+    SENSITIVITY (year 1 after-tax -£885; one input moved at a time, everything else held)
+      occupancy        -15% points (42%)          →   -£5,335  (-4,450)
+      occupancy        -10% points (47%)          →   -£3,780  (-2,895)
+      occupancy        +10% points (67%)          →    £1,496  (+2,381)
+      nightly rate     -15%                       →   -£3,812  (-2,927)
+      nightly rate     +15%                       →    £1,520  (+2,405)
+      mortgage rate    +1.00% points (7.50%)      →   -£2,743  (-1,858)
+      mortgage rate    +2.00% points (8.50%)      →   -£4,880  (-3,995)
+      operating costs  +20%                       →   -£3,448  (-2,562)
     STEADY STATE: operating £19,406 → pre-tax £5,429, tax £3,897, after-tax £1,533
     STEADY STATE  gross yield 13.6%  net yield 6.8%  cash-on-cash 1.5%, break-even occupancy 43.4%
       rates regime: business rates (would qualify after a year at 208 let nights, if the plan holds)
@@ -282,6 +309,15 @@ Vildebeest Road, St Eval, Wadebridge (3-bed semi)  (PL27, St Eval)  https://www.
         met      available nights, next 12 months (owner's plan): 300 vs 140 required [assumption]
         unknown  let nights, last 12 months: no evidence vs 70 required [no evidence]
     basis: assumption (weakest input); inputs: adr=242 [published 2026-10-13]; occupancy=0.57 [published 2026-10-13]; fx=1.30 [assumption]; management=0.18 [assumption]; cleaning=80 [assumption]
+    SENSITIVITY (year 1 after-tax -£355; one input moved at a time, everything else held)
+      occupancy        -15% points (42%)          →   -£4,673  (-4,318)
+      occupancy        -10% points (47%)          →   -£3,117  (-2,762)
+      occupancy        +10% points (67%)          →    £2,026  (+2,381)
+      nightly rate     -15%                       →   -£3,150  (-2,794)
+      nightly rate     +15%                       →    £2,050  (+2,405)
+      mortgage rate    +1.00% points (7.19%)      →   -£2,080  (-1,725)
+      mortgage rate    +2.00% points (8.19%)      →   -£4,218  (-3,863)
+      operating costs  +20%                       →   -£2,785  (-2,430)
     STEADY STATE: operating £19,406 → pre-tax £6,092, tax £4,029, after-tax £2,063
     STEADY STATE  gross yield 13.6%  net yield 6.8%  cash-on-cash 2.0%, break-even occupancy 41.6%
       rates regime: business rates (would qualify after a year at 208 let nights, if the plan holds)

@@ -165,11 +165,56 @@ applicant's income. Replace any of them in `config/costs.yaml`,
 `config/lenders/*.yaml` or `data/applicant.yaml` and the basis column
 changes with it.
 
-Not modelled: capital growth, exit costs, repayment mortgages (interest-only
-is the BTL norm and the config flag exists), the Skipton tracker's base-rate
+## Scope, enforced rather than described
+
+Two things are out of scope and the model refuses them instead of
+approximating: **limited-company purchases** (corporation tax, marginal
+relief and the tax on extracting money are not modelled, so a company figure
+would be cash retained in the company, not a personal return) and
+**repayment mortgages** (capital repayment is not modelled). Setting either
+in `data/applicant.yaml` fails validation with that explanation. A short-let
+assessment with no council tax band is reported as incomplete rather than
+costed with a £0 charge, and it does not appear in the ranking.
+
+Not modelled: capital growth, exit costs, the Skipton tracker's base-rate
 risk, planning restrictions on short lets (Cornwall has none county-wide at
 the time of writing, but check the parish), and the estate covenants on a
 former RAF estate.
+
+## Sensitivity
+
+Year-1 cash flow on the eligible case sits near zero, which is where a point
+estimate is least useful, so every short-let assessment carries a
+one-at-a-time sensitivity grid: after-tax cash flow with occupancy moved by
+±10 and -15 points, nightly rate by ±15%, mortgage rate by +1 and +2 points,
+and operating costs by +20%, everything else held. It says which input the
+answer depends on; it is not a distribution and makes no claim about how
+likely each value is. On the St Eval short let the mortgage rate and
+occupancy dominate, each worth roughly £3,000 to £4,000 a year per step.
+
+## How this was built, and what that demonstrates
+
+Problem: compare two property strategies while accounting for lender
+eligibility, tax and operating costs, in a way that says what each figure
+rests on.
+
+AI-assisted development: the implementation was generated with Claude in a
+day, including alternative designs (a full automated valuation model was
+proposed and declined).
+
+Human oversight: two rounds of independent review found a material
+domain-logic defect (a business-rates test applied to a projection rather
+than to the evidence it requires), a flattering tax simplification, and
+scope the code implied but did not deliver. Each was fixed with a regression
+test and recorded in `docs/review-log.md`. The effect on the headline example
+was to turn a +4.7% year-1 return into -0.3%, which is the correct answer.
+
+Outcome: a tested, reproducible decision-support tool with explicit
+provenance and known limitations. It has not been independently validated
+against real lending decisions or tax returns, and it is not presented as a
+property investment calculator; it is a demonstration of evidence-led
+decision support and of reviewing AI-generated financial logic rather than
+accepting it.
 
 ## Layout
 
@@ -190,7 +235,8 @@ src/property_assessor/
   report.py, cli.py
   rates.py           the three business-rates conditions, year 1 vs steady state
   comparables.py     weighted comparable sales, verdict on the asking price
-tests/               37 tests: comparables weighting and verdicts, lender maths, SDLT, year arithmetic, the three rates conditions, tax banding and the Section 24 outcome, break-even per regime, end to end
+  sensitivity.py     one-at-a-time sensitivity of a short-let year
+tests/               51 tests: scope enforcement, malformed inputs, locality edge cases, extremes, sensitivity, an independent recomputation of the headline example, comparables weighting and verdicts, lender maths, SDLT, year arithmetic, the three rates conditions, tax banding and the Section 24 outcome, break-even per regime, end to end
 docs/example-output.txt
 ```
 

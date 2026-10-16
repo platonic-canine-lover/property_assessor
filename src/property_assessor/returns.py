@@ -102,6 +102,7 @@ class Scenario(BaseModel):
     name: str
     year: Year
     returns: Returns
+    sensitivity: object | None = None  # Sensitivity, typed loosely to avoid an import cycle
 
 
 class Assessment(BaseModel):
@@ -114,6 +115,7 @@ class Assessment(BaseModel):
     year: Year
     returns: Returns
     scenarios: list[Scenario] = Field(default_factory=list)
+    sensitivity: object | None = None  # year-1 Sensitivity for a short let
     warnings: list[str] = Field(default_factory=list)
 
 
@@ -251,11 +253,8 @@ def short_let_year(
             note=f"{decision.reason}; {br.small_business_rate_relief.source}",
         )
     elif ct is None:
-        ct_line = Line(
-            label="council tax",
-            amount=Decimal(0),
-            basis="assumption",
-            note="band not known; £0 entered, which is wrong",
+        raise ValueError(
+            f"{candidate.id}: council tax band is not known, so a short-let year cannot be costed; add council_tax_band to the candidate"
         )
     else:
         premium = ct * (1 + rules.second_home_premium.multiplier)
@@ -367,11 +366,8 @@ def _finish_year(
     operating = money(sum((line.amount for line in op), Decimal(0)))
     interest = money(loan * rate)
     pre_tax = money(gross - operating - interest)
-    if applicant.limited_company:
-        taxable = gross - operating - interest
-        tax_due = money(max(taxable, Decimal(0)) * Decimal("0.25"))  # ASSUMPTION: main rate; small-profits rate ignored
-    else:
-        tax_due = individual_tax_on_profit(gross - operating, interest, applicant.gross_earned_income.value, tax)
+    # Individuals only: Applicant rejects limited_company=True, so there is no company path to get wrong.
+    tax_due = individual_tax_on_profit(gross - operating, interest, applicant.gross_earned_income.value, tax)
     return Year(
         strategy=strategy,
         gross_income=gross,

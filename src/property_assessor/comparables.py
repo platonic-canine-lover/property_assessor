@@ -11,9 +11,10 @@ candidate and the scores are used as weights:
     bedroom_score   1.0 same bedrooms; 0.6 one apart; 0.25 two apart; 0.05 more
                     (unknown bedrooms: 0.4, so the sale counts but not much)
     recency_score   1.0 inside 6 months, falling linearly to 0.3 at 24 months
-    locality_score  1.0 same postcode sector; 0.7 same district only
-                    (we do not have coordinates: listings give the district,
-                    and Price Paid rows give the full postcode)
+    locality_score  1.0 same postcode sector; 0.7 same district, different or
+                    unknown sector; 0.4 sale postcode unknown; 0.1 different
+                    district (we do not have coordinates: listings give the
+                    district, Price Paid rows give the full postcode)
 
 Output: the weighted median sale price, a weighted interquartile range, the
 effective number of comparables (sum of weights), and the asking price's
@@ -125,7 +126,18 @@ def _sector(postcode: str | None) -> str | None:
     return f"{parts[0]} {parts[1][0]}"
 
 
+def _district(postcode: str | None) -> str | None:
+    if not postcode:
+        return None
+    return postcode.strip().upper().split()[0] or None
+
+
 def locality_score(candidate: Candidate, sale: Sale) -> Decimal:
+    sale_district = _district(sale.postcode)
+    if sale_district is None:
+        return Decimal("0.4")
+    if sale_district != candidate.postcode_district.upper():
+        return Decimal("0.1")
     cs, ss = _sector(candidate.postcode), _sector(sale.postcode)
     if cs and ss and cs == ss:
         return Decimal("1.0")

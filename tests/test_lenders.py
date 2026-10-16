@@ -3,6 +3,7 @@ from decimal import Decimal
 from pathlib import Path
 
 import pytest
+from pydantic import ValidationError
 
 from property_assessor.lenders import assess, load_lender, required_rent_monthly, stress_rate
 from property_assessor.models import Applicant, Candidate
@@ -104,10 +105,10 @@ def test_skipton_rejects_short_let_outright(skipton, basic_applicant):
     assert not use.passed and "NOT" in use.detail
 
 
-def test_skipton_rejects_limited_company(skipton):
-    ltd = Applicant(tax_band="basic", gross_earned_income=stated("45000"), limited_company=True)
-    e = assess(skipton, skipton.product("TRK2"), candidate("285000"), ltd, "long_let", stated("2000"))
-    assert not next(c for c in e.checks if c.name == "limited company").passed
+def test_limited_company_applicants_are_out_of_scope(skipton):
+    # Company taxation is not modelled, so the Applicant model refuses rather than letting a lender check pretend otherwise.
+    with pytest.raises(ValidationError):
+        Applicant(tax_band="basic", gross_earned_income=stated("45000"), limited_company=True)
 
 
 def test_minimum_income_and_value(skipton):

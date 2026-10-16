@@ -33,6 +33,7 @@ from property_assessor.returns import (
     returns,
     short_let_year,
 )
+from property_assessor.sensitivity import short_let_sensitivity
 from property_assessor.sourced import Provenance, Sourced
 
 
@@ -118,6 +119,8 @@ def run(inputs: Inputs, strategies: tuple[Strategy, ...] = ("long_let", "short_l
                         else:
                             available = rent.value
                     else:
+                        if cand.council_tax_band is None or cand.council_tax_band not in inputs.rules.council_tax.annual_by_band:
+                            missing.append("council tax band (needed for the second-home premium)")
                         if adr is None:
                             missing.append("short-let ADR for this area")
                         if occ is None:
@@ -135,6 +138,7 @@ def run(inputs: Inputs, strategies: tuple[Strategy, ...] = ("long_let", "short_l
                         rate = product.rate.value
                         cash = cash_in(cand, inputs.applicant, inputs.tax, inputs.costs, product.fee, strategy)
                         scenarios: list[Scenario] = []
+                        sens = None
                         if strategy == "long_let":
                             assert rent is not None
                             year = long_let_year(cand, inputs.applicant, rent, loan, rate, inputs.tax, inputs.costs)
@@ -151,6 +155,9 @@ def run(inputs: Inputs, strategies: tuple[Strategy, ...] = ("long_let", "short_l
                                 cand, inputs.applicant, adr, occ, loan, rate, inputs.tax, inputs.costs, inputs.rules, y1
                             )
                             ret = returns(cand.asking_price.value, year, cash, year.provenance, break_even=be1, decision=y1)
+                            sens = short_let_sensitivity(
+                                cand, inputs.applicant, adr, occ, loan, rate, inputs.tax, inputs.costs, inputs.rules, y1
+                            )
                             # Steady state: what the regime becomes after a year at the projected occupancy, if the plan holds.
                             ss = steady_state(projected_nights, inputs.rules, planned.value, planned.basis, occ.value.basis)
                             scenarios = []
@@ -200,6 +207,7 @@ def run(inputs: Inputs, strategies: tuple[Strategy, ...] = ("long_let", "short_l
                             year=year,
                             returns=ret,
                             scenarios=scenarios,
+                            sensitivity=sens,
                             warnings=warnings,
                         )
                     out.append(Result(cand, strategy, lender, product, elig, assessment, missing))

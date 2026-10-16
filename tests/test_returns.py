@@ -152,9 +152,11 @@ class TestShortLet:
         b = short_let_year(cand(), buyer, self.adr, self.occ, Decimal("1"), Decimal("0.05"), tax, costs, rules, rated(rules))
         assert a.operating_costs - b.operating_costs == Decimal("4030.32")
 
-    def test_unknown_council_tax_band_is_flagged_not_silently_zero(self, tax, costs, buyer, rules):
-        y = short_let_year(cand(band=None), buyer, self.adr, self.occ, Decimal("1"), Decimal("0.05"), tax, costs, rules, premium(rules))
-        assert any("wrong" in (li.note or "") for li in y.operating_lines)
+    def test_unknown_council_tax_band_refuses_rather_than_costing_at_zero(self, tax, costs, buyer, rules):
+        import pytest
+
+        with pytest.raises(ValueError, match="council tax band"):
+            short_let_year(cand(band=None), buyer, self.adr, self.occ, Decimal("1"), Decimal("0.05"), tax, costs, rules, premium(rules))
 
     def test_break_even_is_regime_specific_and_cash_flow_is_monotone_within_a_regime(self, tax, costs, buyer, rules):
         be_p = break_even_occupancy(
