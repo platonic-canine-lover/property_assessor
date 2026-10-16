@@ -13,24 +13,57 @@ sold_median:
   - { area: TR16, granularity: postcode_district, value: { value: "407766", basis: published, source: "https://www.rightmove.co.uk/house-prices/tr16.html", as_of: 2026-07-31, note: "Rightmove average sold price, detached, TR16, last year (Land Registry data to 31 Jul 2026, updated 17 Sep 2026). Overall TR16 average £326,074, up 3% on the year." } }
   - { area: PL27, granularity: postcode_district, value: { value: "292811", basis: published, source: "https://www.rightmove.co.uk/house-prices/pl27.html", as_of: 2026-07-31, note: "Rightmove average sold price, semi-detached, PL27, last year. Overall PL27 average £459,171 is inflated by Rock and Trebetherick (sales to £2.8m); St Eval is a former RAF estate and a different sub-market; down 7% on the year." } }
 comparables:
-  TR16_detached_2bed_recent:
+  TR16_houses_recent:
     source: https://www.rightmove.co.uk/house-prices/tr16.html
     as_of: 2026-07-31
     basis: published
+    note: "The 22 house sales (flats excluded) among the 25 most recent TR16 transactions shown by Rightmove, Land Registry data to 31 Jul 2026, updated 17 Sep 2026. Full postcodes come from the sold-price records; the candidate listing gives only its district."
     sales:
-      - { price: 295000, date: 2026-07-10, address: "Tarnside, Bridge, Redruth TR16 4QG", type: detached, beds: 2 }
-      - { price: 305000, date: 2026-05-22, address: "43 Pennance Parc, Redruth TR16 5TY", type: detached, beds: 2 }
-      - { price: 227500, date: 2026-06-30, address: "5 Bosawna Close, Redruth TR16 5LB", type: detached, beds: 2 }
-      - { price: 450000, date: 2026-07-02, address: "White Croft, Parc Erissey, Redruth TR16 4HN", type: detached, beds: null }
-      - { price: 405000, date: 2026-06-25, address: "Ferndale, Pennance Lane, Redruth TR16 5TL", type: detached, beds: 3 }
-      - { price: 650000, date: 2026-06-08, address: "Laity Cottage, Rayle Bottoms, Redruth TR16 4QT", type: detached, beds: 4 }
-  PL27_semi_3bed_recent:
+      - { price: 280000, date: 2026-07-15, address: "19 Poldark Road, Redruth TR16 4DL", postcode: "TR16 4DL", type: terraced, beds: 3 }
+      - { price: 260000, date: 2026-07-15, address: "18 Treseder Close, Redruth TR16 5ES", postcode: "TR16 5ES", type: semi_detached, beds: 2 }
+      - { price: 289950, date: 2026-07-15, address: "8 Bridge Row, Bridge Hill, Redruth TR16 4QW", postcode: "TR16 4QW", type: semi_detached, beds: 3 }
+      - { price: 295000, date: 2026-07-10, address: "Tarnside, Bridge, Redruth TR16 4QG", postcode: "TR16 4QG", type: detached, beds: 2 }
+      - { price: 437500, date: 2026-07-10, address: "6 Tregea Terrace, Redruth TR16 4NG", postcode: "TR16 4NG", type: terraced, beds: 3 }
+      - { price: 365000, date: 2026-07-03, address: "Hunters Moon, Cot Road, Redruth TR16 4PS", postcode: "TR16 4PS", type: detached, beds: 3 }
+      - { price: 252000, date: 2026-07-02, address: "48 Wheal Gorland Road, Redruth TR16 5LT", postcode: "TR16 5LT", type: semi_detached, beds: 2 }
+      - { price: 450000, date: 2026-07-02, address: "White Croft, Parc Erissey, Redruth TR16 4HN", postcode: "TR16 4HN", type: detached, beds: null }
+      - { price: 227500, date: 2026-06-30, address: "5 Bosawna Close, Redruth TR16 5LB", postcode: "TR16 5LB", type: detached, beds: 2 }
+      - { price: 258000, date: 2026-06-26, address: "15 Nicholas Avenue, Redruth TR16 6QF", postcode: "TR16 6QF", type: detached, beds: 3 }
+      - { price: 220000, date: 2026-06-26, address: "Lowena, North Country, Redruth TR16 4AA", postcode: "TR16 4AA", type: detached, beds: 5 }
+      - { price: 405000, date: 2026-06-25, address: "Ferndale, Pennance Lane, Redruth TR16 5TL", postcode: "TR16 5TL", type: detached, beds: 3 }
+      - { price: 225000, date: 2026-06-22, address: "4 Trevince Parc, Redruth TR16 5QX", postcode: "TR16 5QX", type: semi_detached, beds: 2 }
+      - { price: 244000, date: 2026-06-13, address: "8 Bridge Road, Redruth TR16 4SA", postcode: "TR16 4SA", type: terraced, beds: 3 }
+      - { price: 286000, date: 2026-06-12, address: "20 Treseder Close, Redruth TR16 5ES", postcode: "TR16 5ES", type: semi_detached, beds: 3 }
+      - { price: 390000, date: 2026-06-12, address: "Trelawney, Vogue, Redruth TR16 5NP", postcode: "TR16 5NP", type: detached, beds: 3 }
+      - { price: 650000, date: 2026-06-08, address: "Laity Cottage, Rayle Bottoms, Redruth TR16 4QT", postcode: "TR16 4QT", type: detached, beds: 4 }
+      - { price: 210000, date: 2026-05-29, address: "17 Trevarren Avenue, Four Lanes TR16 6NH", postcode: "TR16 6NH", type: detached, beds: 3 }
+      - { price: 215000, date: 2026-05-29, address: "4 Harbour Terrace, Portreath TR16 4LF", postcode: "TR16 4LF", type: terraced, beds: 2 }
+      - { price: 305000, date: 2026-05-22, address: "43 Pennance Parc, Redruth TR16 5TY", postcode: "TR16 5TY", type: detached, beds: 2 }
+      - { price: 245000, date: 2026-05-14, address: "6 Church Road, Redruth TR16 6LT", postcode: "TR16 6LT", type: terraced, beds: 2 }
+      - { price: 170000, date: 2026-05-14, address: "3 Merritts Hill, Redruth TR16 4HD", postcode: "TR16 4HD", type: terraced, beds: 3 }
+  PL27_houses_recent:
     source: https://www.rightmove.co.uk/house-prices/pl27.html
     as_of: 2026-07-31
     basis: published
+    note: "The 20 house sales (flats and a £2.8m outlier with no bedroom count excluded) among the 25 most recent PL27 transactions. No St Eval sale appears; PL27 includes Rock and Trebetherick, whose prices are far above the St Eval estate. The locality score cannot separate them without the candidate's full postcode."
     sales:
-      - { price: 300000, date: 2026-05-27, address: "96 Talmena Avenue, Wadebridge PL27 7RR", type: semi_detached, beds: 3 }
-      - { price: 370000, date: 2026-07-24, address: "4 Keston Gardens, West Hill, Wadebridge PL27 7FJ", type: semi_detached, beds: 4 }
-      - { price: 245000, date: 2026-06-26, address: "23 Trevarner Meadow, Wadebridge PL27 6GF", type: semi_detached, beds: null }
-      - { price: 275000, date: 2026-05-22, address: "23 Trevanion Road, Wadebridge PL27 7NZ", type: terraced, beds: 3 }
-    note: "No St Eval sale appears in the 25 most recent PL27 transactions; the Wadebridge town sales above are the nearest by type."
+      - { price: 2000000, date: 2026-07-01, address: "2 Forlaze Road, Rock, Wadebridge PL27 6LL", postcode: "PL27 6LL", type: detached, beds: 4 }
+      - { price: 775000, date: 2026-07-17, address: "Windylow, Rock Road, Rock, Wadebridge PL27 6NP", postcode: "PL27 6NP", type: detached, beds: 3 }
+      - { price: 620000, date: 2026-07-01, address: "12 Poppies, Francis Road, Trebetherick, Wadebridge PL27 6TR", postcode: "PL27 6TR", type: terraced, beds: 4 }
+      - { price: 600000, date: 2026-07-22, address: "17 Manilu, Francis Lane, Trebetherick, Wadebridge PL27 6TS", postcode: "PL27 6TS", type: detached, beds: 4 }
+      - { price: 487500, date: 2026-06-19, address: "7 St Cleer Drive, Wadebridge PL27 6DU", postcode: "PL27 6DU", type: detached, beds: 4 }
+      - { price: 450000, date: 2026-06-29, address: "5 Hill Park, Wadebridge PL27 6UL", postcode: "PL27 6UL", type: detached, beds: 4 }
+      - { price: 382500, date: 2026-06-22, address: "2 Valley View, Wadebridge PL27 7BT", postcode: "PL27 7BT", type: detached, beds: 3 }
+      - { price: 370000, date: 2026-07-24, address: "4 Keston Gardens, West Hill, Wadebridge PL27 7FJ", postcode: "PL27 7FJ", type: semi_detached, beds: 4 }
+      - { price: 363000, date: 2026-05-27, address: "2 Mowhay Meadow, Wadebridge PL27 7DY", postcode: "PL27 7DY", type: detached, beds: 3 }
+      - { price: 350000, date: 2026-06-25, address: "Nanhayle 19a Green Hill, Green Hill, Wadebridge PL27 6AY", postcode: "PL27 6AY", type: terraced, beds: 3 }
+      - { price: 318000, date: 2026-06-05, address: "4 Inches, A389, Sladesbridge, Wadebridge PL27 6JF", postcode: "PL27 6JF", type: terraced, beds: 3 }
+      - { price: 300000, date: 2026-05-27, address: "96 Talmena Avenue, Wadebridge PL27 7RR", postcode: "PL27 7RR", type: semi_detached, beds: 3 }
+      - { price: 285000, date: 2026-07-01, address: "23 Higher Whiterock, Wadebridge PL27 7DU", postcode: "PL27 7DU", type: detached, beds: 2 }
+      - { price: 277500, date: 2026-06-22, address: "Furze Cottage, A39, Whitecross, Wadebridge PL27 7JD", postcode: "PL27 7JD", type: terraced, beds: 3 }
+      - { price: 275000, date: 2026-06-18, address: "100 Talmena Avenue, Wadebridge PL27 7RR", postcode: "PL27 7RR", type: detached, beds: 3 }
+      - { price: 275000, date: 2026-05-22, address: "23 Trevanion Road, Wadebridge PL27 7NZ", postcode: "PL27 7NZ", type: terraced, beds: 3 }
+      - { price: 245000, date: 2026-06-26, address: "23 Trevarner Meadow, Wadebridge PL27 6GF", postcode: "PL27 6GF", type: semi_detached, beds: null }
+      - { price: 237000, date: 2026-06-11, address: "20 Fernleigh Crescent, Wadebridge PL27 7JJ", postcode: "PL27 7JJ", type: terraced, beds: 2 }
+      - { price: 215000, date: 2026-05-21, address: "1 Quarrymans Cottages, Edmonton, Wadebridge PL27 7JA", postcode: "PL27 7JA", type: terraced, beds: 2 }
+      - { price: 130000, date: 2026-06-12, address: "39 Rowan Road, Wadebridge PL27 7SN", postcode: "PL27 7SN", type: terraced, beds: 2 }

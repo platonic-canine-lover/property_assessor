@@ -8,7 +8,7 @@ from typing import Annotated
 
 import typer
 
-from property_assessor.assessor import Inputs, run
+from property_assessor.assessor import Inputs, comparables, run
 from property_assessor.report import render
 
 app = typer.Typer(add_completion=False, help="Compare UK property candidates as long-let or short-let investments.")
@@ -27,6 +27,7 @@ def compare(
 ) -> None:
     inputs = Inputs.load(config, candidates, applicant, market, area)
     results = run(inputs)
+    comps = comparables(inputs)
     if as_json:
         payload = [
             {
@@ -41,9 +42,11 @@ def compare(
             }
             for r in results
         ]
-        typer.echo(json.dumps(payload, indent=2, default=str))
+        typer.echo(
+            json.dumps({"comparables": {k: v.model_dump(mode="json") for k, v in comps.items()}, "results": payload}, indent=2, default=str)
+        )
     else:
-        typer.echo(render(results))
+        typer.echo(render(results, comps))
 
 
 if __name__ == "__main__":

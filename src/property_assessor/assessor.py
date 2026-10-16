@@ -3,11 +3,13 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from datetime import date
 from decimal import Decimal
 from pathlib import Path
 
 import yaml
 
+from property_assessor.comparables import ComparablesResult, SalesSet, compare, load_sales, sales_for
 from property_assessor.config import (
     AreaRules,
     CostConfig,
@@ -43,9 +45,13 @@ class Inputs:
     lenders: list[Lender]
     candidates: list[Candidate]
     applicant: Applicant
+    sales: dict[str, SalesSet]
+    today: date
 
     @classmethod
-    def load(cls, config_dir: Path, candidates_file: Path, applicant_file: Path, market_file: Path, area: str) -> Inputs:
+    def load(
+        cls, config_dir: Path, candidates_file: Path, applicant_file: Path, market_file: Path, area: str, today: date | None = None
+    ) -> Inputs:
         raw = yaml.safe_load(candidates_file.read_text())
         return cls(
             tax=load_tax(config_dir / "tax.yaml"),
@@ -55,6 +61,8 @@ class Inputs:
             lenders=load_lenders(config_dir / "lenders"),
             candidates=[Candidate.model_validate(c) for c in raw["candidates"]],
             applicant=Applicant.model_validate(yaml.safe_load(applicant_file.read_text())),
+            sales=load_sales(market_file),
+            today=today or date.today(),
         )
 
 
@@ -77,6 +85,16 @@ def area_keys(c: Candidate) -> list[str]:
         keys.append(c.postcode.rsplit(" ", 1)[0] + " " + c.postcode.rsplit(" ", 1)[1][0])
     keys += [c.postcode_district, c.town, "Cornwall"]
     return keys
+
+
+def comparables(inputs: Inputs) -> dict[str, ComparablesResult]:
+    """Weighted comparable sales per candidate, where the snapshot has a set for its district."""
+    out: dict[str, ComparablesResult] = {}
+    for cand in inputs.candidates:
+        sales = sales_for(cand, inputs.sales)
+        if sales is not None:
+            out[cand.id] = compare(cand, sales, inputs.today)
+    return out
 
 
 def run(inputs: Inputs, strategies: tuple[Strategy, ...] = ("long_let", "short_let")) -> list[Result]:

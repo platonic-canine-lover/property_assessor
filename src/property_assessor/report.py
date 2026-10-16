@@ -5,6 +5,7 @@ from __future__ import annotations
 from decimal import Decimal
 
 from property_assessor.assessor import Result
+from property_assessor.comparables import ComparablesResult
 
 
 def gbp(d: Decimal) -> str:
@@ -16,7 +17,28 @@ def pct(d: Decimal | None) -> str:
     return "n/a" if d is None else f"{d:.1%}"
 
 
-def render(results: list[Result]) -> str:
+def comparables_lines(c: ComparablesResult) -> list[str]:
+    out = [f"  COMPARABLES ({c.source}, to {c.as_of}, {c.basis}): {len(c.scored)} sales, {c.effective_n} effective after weighting"]
+    if c.verdict == "too few comparables":
+        out.append("    too few effective comparables to judge the asking price")
+    else:
+        assert c.weighted_median is not None and c.weighted_q1 is not None and c.weighted_q3 is not None
+        out.append(
+            f"    weighted median {gbp(c.weighted_median)}, interquartile {gbp(c.weighted_q1)} to {gbp(c.weighted_q3)}; "
+            f"asking {gbp(c.asking_price)} is {c.verdict.upper()} ({c.premium_over_median:+.1%} vs median)"
+        )
+    for sc in c.scored[:5]:
+        s = sc.sale
+        out.append(
+            f"      w={sc.weight:.2f}  {gbp(s.price)}  {s.date}  {s.type.replace('_', ' ')} {s.beds or '?'}-bed  {s.address}"
+            f"  [type {sc.type_score} × beds {sc.bedroom_score} × recency {sc.recency_score} × locality {sc.locality_score}]"
+        )
+    if c.note:
+        out.append(f"    note: {c.note}")
+    return out
+
+
+def render(results: list[Result], comps: dict[str, ComparablesResult] | None = None) -> str:
     lines: list[str] = []
     by_candidate: dict[str, list[Result]] = {}
     for r in results:
@@ -32,6 +54,8 @@ def render(results: list[Result]) -> str:
         )
         for n in c.notes:
             lines.append(f"  note: {n}")
+        if comps and c.id in comps:
+            lines.extend(comparables_lines(comps[c.id]))
         for r in rs:
             e = r.eligibility
             use = next(c for c in e.checks if c.name == "property use")

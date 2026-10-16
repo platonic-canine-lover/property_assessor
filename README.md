@@ -83,6 +83,32 @@ Four findings, each of which the tool prints with the arithmetic behind it:
   projection for St Eval specifically, which is also what Leeds will ask
   for; the config takes either.
 
+## Comparable sales: is the asking price in line with what sold?
+
+Each candidate's asking price is set against the recent house sales in its
+postcode district (Land Registry data via Rightmove's sold-price pages),
+weighted by how comparable each sale is: same type (a detached bungalow is
+detached), same bedroom count, how recent, and same postcode sector where
+the candidate's full postcode is known. The output is a weighted median and
+interquartile range, the effective number of comparables after weighting,
+a verdict (within, above or below the range) and the five sales that
+carried the most weight with their scores shown, so the judgement can be
+argued with. Fewer than three effective comparables withholds the verdict.
+
+On the two listings: the Redruth bungalow at £500,000 is **above range**
+against a weighted median of £260,000 (+92%), with the five heaviest
+comparables all 2-bed detached or semi-detached sales between £225,000 and
+£295,000. The listing's case for the premium is that it was built in 2024
+to a bespoke specification; the sold data cannot see that, and the report
+does not pretend it can. The St Eval semi at £285,000 is **within range**
+(weighted median £318,000, -10%), the top comparable being the one 3-bed
+semi in the set, at £300,000 in Wadebridge. The note on that set says why
+the PL27 range is wide: it includes Rock and Trebetherick.
+
+No valuation model is trained and no "score" is produced. The weights are
+stated in `comparables.py` and are assumptions; what they weight is
+published.
+
 ## The Cornwall cliff, and why a projection cannot clear it
 
 Cornwall charges a 100% council tax premium on second homes (since 1 April
@@ -163,7 +189,8 @@ src/property_assessor/
   assessor.py        candidates × strategies × products
   report.py, cli.py
   rates.py           the three business-rates conditions, year 1 vs steady state
-tests/               32 tests: lender maths, SDLT, year arithmetic, the three rates conditions, tax banding and the Section 24 outcome, break-even per regime, end to end
+  comparables.py     weighted comparable sales, verdict on the asking price
+tests/               37 tests: comparables weighting and verdicts, lender maths, SDLT, year arithmetic, the three rates conditions, tax banding and the Section 24 outcome, break-even per regime, end to end
 docs/example-output.txt
 ```
 

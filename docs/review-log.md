@@ -23,6 +23,18 @@ Effect on the worked example: the St Eval short let went from +4.7% to
 -0.3% year-1 cash-on-cash (doubled council tax and higher-rate tax), with
 +2.0% in steady state. The earlier figure was flattering and wrong.
 
+## Commit 3: comparable sales
+
+A second review (an AI-generated architecture proposal) suggested a full
+automated valuation model: gradient boosting, SHAP explanations, walkability
+and school scores, risk and investment indices. One piece was taken: a
+weighted comparable-sales engine over the Price Paid data already in the
+snapshot, with the weights stated and the top comparables printed. The
+rest was declined on the grounds this repository has been reviewed on:
+there is no training data of that kind for Cornwall in hand, and the
+scores would be exactly the unsourced numbers the first reviewer marked
+provenance 9/10 for not producing.
+
 ## Reviewer's standing caveat, kept here on purpose
 
 Passing tests prove the code behaves as tested. They do not establish that

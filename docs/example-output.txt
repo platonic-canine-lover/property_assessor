@@ -5,6 +5,14 @@ Little Carharrack, Redruth (2-bed bungalow, 2024)  (TR16, Redruth)  https://www.
   note: Mains electricity; private borehole water supply; private drainage
   note: EPC not shown on the listing
   note: Agent: Clive Pearce Property, Truro
+  COMPARABLES (https://www.rightmove.co.uk/house-prices/tr16.html, to 2026-07-31, published): 22 sales, 7.83 effective after weighting
+    weighted median £260,000, interquartile £227,500 to £305,000; asking £500,000 is ABOVE RANGE (+92.3% vs median)
+      w=0.63  £295,000  2026-07-10  detached 2-bed  Tarnside, Bridge, Redruth TR16 4QG  [type 0.9 × beds 1.0 × recency 1.0 × locality 0.7]
+      w=0.63  £227,500  2026-06-30  detached 2-bed  5 Bosawna Close, Redruth TR16 5LB  [type 0.9 × beds 1.0 × recency 1.0 × locality 0.7]
+      w=0.63  £305,000  2026-05-22  detached 2-bed  43 Pennance Parc, Redruth TR16 5TY  [type 0.9 × beds 1.0 × recency 1.0 × locality 0.7]
+      w=0.42  £260,000  2026-07-15  semi detached 2-bed  18 Treseder Close, Redruth TR16 5ES  [type 0.6 × beds 1.0 × recency 1.0 × locality 0.7]
+      w=0.42  £252,000  2026-07-02  semi detached 2-bed  48 Wheal Gorland Road, Redruth TR16 5LT  [type 0.6 × beds 1.0 × recency 1.0 × locality 0.7]
+    note: The 22 house sales (flats excluded) among the 25 most recent TR16 transactions shown by Rightmove, Land Registry data to 31 Jul 2026, updated 17 Sep 2026. Full postcodes come from the sold-price records; the candidate listing gives only its district.
   LONG LET   Leeds Building Society (holiday let)  HL2-75: excluded, long_let is NOT an accepted use (https://leedsbuildingsociety.co.uk/intermediaries/products/holiday-let-mortgages)
   LONG LET   Leeds Building Society (holiday let)  HL5-75: excluded, long_let is NOT an accepted use (https://leedsbuildingsociety.co.uk/intermediaries/products/holiday-let-mortgages)
 
@@ -149,6 +157,14 @@ Vildebeest Road, St Eval, Wadebridge (3-bed semi)  (PL27, St Eval)  https://www.
   note: Chain free; rear extension with open-plan kitchen/dining/living; wood-burning stove; ground-floor shower room; gas central heating; allocated parking
   note: Former RAF St Eval estate: check for any estate covenants on letting before relying on a short-let strategy
   note: Agent charges a non-refundable anti-money-laundering fee on offer acceptance
+  COMPARABLES (https://www.rightmove.co.uk/house-prices/pl27.html, to 2026-07-31, published): 20 sales, 7.03 effective after weighting
+    weighted median £318,000, interquartile £275,000 to £382,500; asking £285,000 is WITHIN RANGE (-10.4% vs median)
+      w=0.70  £300,000  2026-05-27  semi detached 3-bed  96 Talmena Avenue, Wadebridge PL27 7RR  [type 1.0 × beds 1.0 × recency 1.0 × locality 0.7]
+      w=0.42  £775,000  2026-07-17  detached 3-bed  Windylow, Rock Road, Rock, Wadebridge PL27 6NP  [type 0.6 × beds 1.0 × recency 1.0 × locality 0.7]
+      w=0.42  £382,500  2026-06-22  detached 3-bed  2 Valley View, Wadebridge PL27 7BT  [type 0.6 × beds 1.0 × recency 1.0 × locality 0.7]
+      w=0.42  £370,000  2026-07-24  semi detached 4-bed  4 Keston Gardens, West Hill, Wadebridge PL27 7FJ  [type 1.0 × beds 0.6 × recency 1.0 × locality 0.7]
+      w=0.42  £363,000  2026-05-27  detached 3-bed  2 Mowhay Meadow, Wadebridge PL27 7DY  [type 0.6 × beds 1.0 × recency 1.0 × locality 0.7]
+    note: The 20 house sales (flats and a £2.8m outlier with no bedroom count excluded) among the 25 most recent PL27 transactions. No St Eval sale appears; PL27 includes Rock and Trebetherick, whose prices are far above the St Eval estate. The locality score cannot separate them without the candidate's full postcode.
   LONG LET   Leeds Building Society (holiday let)  HL2-75: excluded, long_let is NOT an accepted use (https://leedsbuildingsociety.co.uk/intermediaries/products/holiday-let-mortgages)
   LONG LET   Leeds Building Society (holiday let)  HL5-75: excluded, long_let is NOT an accepted use (https://leedsbuildingsociety.co.uk/intermediaries/products/holiday-let-mortgages)
 
