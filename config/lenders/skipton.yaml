@@ -39,7 +39,7 @@ products:
     rate:
       value: "0.0444"
       basis: stated
-      source: Skipton product finder, screenshot supplied by the user
+      source: my screenshot of the Skipton product finder, 16 Oct 2026
       as_of: 2026-10-16
       note: "Shown as 4.44% initial, APRC 6.20%, £995 fee, interest-only allowed. CONFIRM this is the buy-to-let variant: the finder card does not say so, and the £555/month example is the finder's default £150,000 loan."
     base_rate_assumed:
@@ -50,7 +50,7 @@ products:
     fee:
       value: "995"
       basis: stated
-      source: Skipton product finder, screenshot supplied by the user
+      source: my screenshot of the Skipton product finder, 16 Oct 2026
       as_of: 2026-10-16
   - code: R2606
     name: Fixed, £1,995 fee (term unconfirmed)
@@ -75,4 +75,4 @@ products:
     fee: { value: "0", basis: published, source: "Skipton BTL product guide 02/10/2026", as_of: 2026-10-02 }
 notes:
   - "Consumer page: 'Your rental income can cover 125% of your mortgage payments', deposit at least 25%, income at least £20k, interest-only or repayment (https://www.skipton.co.uk/mortgages/buy-to-let)."
-  - "The user's reason for choosing Skipton ('most likely to approve') is a judgement, not a published fact."
+  - "My reason for choosing Skipton (most likely to approve this purchase) is my judgement, not a published fact."

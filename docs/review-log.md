@@ -89,3 +89,21 @@ Two corrections to the review, both verified in the code:
 One recommendation accepted without change: the scope is frozen here. 61
 tests, `ruff`, `ruff format` and `mypy --strict` clean, and the worked
 example regenerated from the committed snapshots.
+
+## Review 4 (commit `616b954` reviewed)
+
+**The additional-rate threshold was £12,570 too low.** `config/tax.yaml`
+gave the higher-rate band as taxable income up to £112,570, which is
+£125,140 minus the personal allowance. That subtraction is wrong: by
+£125,140 the allowance has tapered to nil, so taxable income equals total
+income and the 45% rate starts at £125,140 of taxable income. Anyone with
+taxable income above £125,140 was overtaxed by up to £628.50 (£12,570 at
+the 5-point difference). No test covered that region. Fixed, with tests at
+£125,140 (all at 40%, £42,516), at £125,141 (first pound at 45%) and at
+£150,000 (£53,703, HMRC's figure for a nil allowance). The committed
+worked example uses £45,000 of earned income and is unaffected.
+
+**Config and docstrings referred to "the user".** The figures in this
+repository are mine; the wording now says so in the first person.
+
+62 tests.

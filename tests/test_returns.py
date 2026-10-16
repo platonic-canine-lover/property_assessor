@@ -226,6 +226,15 @@ class TestTax:
             Decimal("110000") - Decimal("7570") - Decimal("37700")
         ) * Decimal("0.40")
 
+    def test_additional_rate_starts_at_125140_of_taxable_income_not_earlier(self, tax):
+        # At £125,140 the allowance is nil, so taxable income is the full £125,140 and every pound
+        # above £37,700 is at 40%: 7,540 + 87,440 × 0.40 = 42,516. Nothing at 45% yet.
+        assert income_tax(Decimal("125140"), tax) == Decimal("42516")
+        # One pound more is the first pound at 45%.
+        assert income_tax(Decimal("125141"), tax) - income_tax(Decimal("125140"), tax) == Decimal("0.45")
+        # £150,000: 42,516 + 24,860 × 0.45 = 53,703 (HMRC's figure for a nil allowance).
+        assert income_tax(Decimal("150000"), tax) == Decimal("53703")
+
     def test_rental_profit_stacks_on_earned_income_and_crosses_into_higher_rate(self, tax):
         # £45,000 earned; £15,293 profit: 5,270 at 20% + 10,023 at 40% = 1,054 + 4,009.20 = 5,063.20
         # credit 20% × min(interest 13,231, profit) = 2,646.20 → 2,417.00

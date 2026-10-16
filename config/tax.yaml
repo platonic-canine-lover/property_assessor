@@ -19,9 +19,9 @@ income_tax:
   personal_allowance: 12570
   personal_allowance_taper_from: 100000     # £1 lost per £2 above this; nil at £125,140
   bands:                                    # taxable income (after allowance) up to → rate; rental profit stacks on earned income
-    - { up_to: 37700,  rate: "0.20" }       # £12,571 to £50,270
-    - { up_to: 112570, rate: "0.40" }       # £50,271 to £125,140
-    - { up_to: null,   rate: "0.45" }
+    - { up_to: 37700,  rate: "0.20" }       # total income £12,571 to £50,270 with a full allowance
+    - { up_to: 125140, rate: "0.40" }       # higher rate up to £125,140 of TAXABLE income: by then the allowance has tapered to nil, so taxable equals total
+    - { up_to: null,   rate: "0.45" }       # additional rate above £125,140
   marginal_rate: { basic: "0.20", higher: "0.40" }   # kept for reference; tax is now computed on the bands above
   # Individual landlords cannot deduct mortgage interest; they get a 20% tax credit on it instead.
   finance_cost_credit: "0.20"

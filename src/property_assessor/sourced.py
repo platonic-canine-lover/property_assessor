@@ -5,7 +5,7 @@ next to any figure it affects. The bases, in descending order of trust:
 
     published   a figure printed by the party that owns it (a lender's rate
                 card, a council's web page, an ONS table) on the date given
-    stated      a figure given by the user (an asking price from a listing,
+    stated      a figure I supplied myself (an asking price from a listing,
                 a product chosen in a product finder)
     measured    something observed directly
     estimate    derived from published figures by a stated method
