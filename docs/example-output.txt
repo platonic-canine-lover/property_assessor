@@ -1,0 +1,241 @@
+====================================================================================================
+Little Carharrack, Redruth (2-bed bungalow, 2024)  (TR16, Redruth)  https://www.rightmove.co.uk/properties/92648523
+  £500,000 stated 2026-10-16  |  2 bed bungalow, freehold  |  council tax band C  |  EPC not shown
+  note: Detached bungalow built 2024 to a bespoke specification; ensuite to both bedrooms; solar panels and EV point; gated, carport, landscaped gardens
+  note: Mains electricity; private borehole water supply; private drainage
+  note: EPC not shown on the listing
+  note: Agent: Clive Pearce Property, Truro
+  LONG LET   Leeds Building Society (holiday let)  HL2-75: excluded, long_let is NOT an accepted use (https://leedsbuildingsociety.co.uk/intermediaries/products/holiday-let-mortgages)
+  LONG LET   Leeds Building Society (holiday let)  HL5-75: excluded, long_let is NOT an accepted use (https://leedsbuildingsociety.co.uk/intermediaries/products/holiday-let-mortgages)
+
+  LONG LET   Skipton Building Society  TRK2 2 Year Tracker, Base Rate + 0.69%
+    loan £375,000 at 4.44% (stated), LTV 75%, stress 6.44%
+    NOT ELIGIBLE
+      ok   property use: long_let is an accepted use (https://www.skipton-intermediaries.co.uk/criteria/a-z-lending-criteria/a-z-lending-criteria-btl)
+      ok   minimum property value: price £500,000 vs minimum £75,000
+      FAIL LTV: LTV 75.0% vs maximum 70% (new build; incentive not ruled out, so the lower cap applies until confirmed)
+      ok   minimum income: earned income £45,000 vs minimum £20,000
+      FAIL rental cover: rent £880/month vs required £2,516 (FAILS by £1,636; stress 6.44% × ICR 125%)
+    cash in £168,395: deposit (25%) £125,000 [stated]; SDLT incl. additional-property surcharge £40,000 [published]; product fee £995 [stated]; legal fees £1,800 [assumption]; survey £600 [assumption]; mortgage valuation £0 [stated]
+    year 1 income £9,748: rent £880/month (local_authority figure, 2-bed), less 4 void weeks [published]
+    operating £2,355: management 10% £975 [assumption]; maintenance 8% £780 [assumption]; landlord insurance £350 [assumption]; safety certificates £250 [assumption]
+    mortgage interest £16,650  →  pre-tax -£9,257, tax £0, after-tax -£9,257
+    RETURNS  gross yield 2.0%  net yield 1.5%  cash-on-cash -5.5%
+    basis: assumption (weakest input); inputs: rent=880 [published 2026-08-01]; management=0.10 [assumption]; voids=4 [assumption]
+    ! private water supply or drainage: lender valuation and holiday-let insurance may ask questions
+    ! NOT ELIGIBLE with this lender and product; returns shown for information only
+
+  LONG LET   Skipton Building Society  R2606 Fixed, £1,995 fee (term unconfirmed)
+    loan £375,000 at 5.44% (published), LTV 75%, stress 7.44%
+    NOT ELIGIBLE
+      ok   property use: long_let is an accepted use (https://www.skipton-intermediaries.co.uk/criteria/a-z-lending-criteria/a-z-lending-criteria-btl)
+      ok   minimum property value: price £500,000 vs minimum £75,000
+      FAIL LTV: LTV 75.0% vs maximum 70% (new build; incentive not ruled out, so the lower cap applies until confirmed)
+      ok   minimum income: earned income £45,000 vs minimum £20,000
+      FAIL rental cover: rent £880/month vs required £2,906 (FAILS by £2,026; stress 7.44% × ICR 125%)
+    cash in £169,395: deposit (25%) £125,000 [stated]; SDLT incl. additional-property surcharge £40,000 [published]; product fee £1,995 [published]; legal fees £1,800 [assumption]; survey £600 [assumption]; mortgage valuation £0 [stated]
+    year 1 income £9,748: rent £880/month (local_authority figure, 2-bed), less 4 void weeks [published]
+    operating £2,355: management 10% £975 [assumption]; maintenance 8% £780 [assumption]; landlord insurance £350 [assumption]; safety certificates £250 [assumption]
+    mortgage interest £20,400  →  pre-tax -£13,007, tax £0, after-tax -£13,007
+    RETURNS  gross yield 2.0%  net yield 1.5%  cash-on-cash -7.7%
+    basis: assumption (weakest input); inputs: rent=880 [published 2026-08-01]; management=0.10 [assumption]; voids=4 [assumption]
+    ! private water supply or drainage: lender valuation and holiday-let insurance may ask questions
+    ! NOT ELIGIBLE with this lender and product; returns shown for information only
+
+  LONG LET   Skipton Building Society  R2605 Fixed, £995 fee (term unconfirmed)
+    loan £375,000 at 5.55% (published), LTV 75%, stress 7.55%
+    NOT ELIGIBLE
+      ok   property use: long_let is an accepted use (https://www.skipton-intermediaries.co.uk/criteria/a-z-lending-criteria/a-z-lending-criteria-btl)
+      ok   minimum property value: price £500,000 vs minimum £75,000
+      FAIL LTV: LTV 75.0% vs maximum 70% (new build; incentive not ruled out, so the lower cap applies until confirmed)
+      ok   minimum income: earned income £45,000 vs minimum £20,000
+      FAIL rental cover: rent £880/month vs required £2,949 (FAILS by £2,069; stress 7.55% × ICR 125%)
+    cash in £168,395: deposit (25%) £125,000 [stated]; SDLT incl. additional-property surcharge £40,000 [published]; product fee £995 [published]; legal fees £1,800 [assumption]; survey £600 [assumption]; mortgage valuation £0 [stated]
+    year 1 income £9,748: rent £880/month (local_authority figure, 2-bed), less 4 void weeks [published]
+    operating £2,355: management 10% £975 [assumption]; maintenance 8% £780 [assumption]; landlord insurance £350 [assumption]; safety certificates £250 [assumption]
+    mortgage interest £20,812  →  pre-tax -£13,419, tax £0, after-tax -£13,419
+    RETURNS  gross yield 2.0%  net yield 1.5%  cash-on-cash -8.0%
+    basis: assumption (weakest input); inputs: rent=880 [published 2026-08-01]; management=0.10 [assumption]; voids=4 [assumption]
+    ! private water supply or drainage: lender valuation and holiday-let insurance may ask questions
+    ! NOT ELIGIBLE with this lender and product; returns shown for information only
+
+  LONG LET   Skipton Building Society  R2604 Fixed, fee-free (term unconfirmed)
+    loan £375,000 at 5.86% (published), LTV 75%, stress 7.86%
+    NOT ELIGIBLE
+      ok   property use: long_let is an accepted use (https://www.skipton-intermediaries.co.uk/criteria/a-z-lending-criteria/a-z-lending-criteria-btl)
+      ok   minimum property value: price £500,000 vs minimum £75,000
+      FAIL LTV: LTV 75.0% vs maximum 70% (new build; incentive not ruled out, so the lower cap applies until confirmed)
+      ok   minimum income: earned income £45,000 vs minimum £20,000
+      FAIL rental cover: rent £880/month vs required £3,070 (FAILS by £2,190; stress 7.86% × ICR 125%)
+    cash in £167,400: deposit (25%) £125,000 [stated]; SDLT incl. additional-property surcharge £40,000 [published]; product fee £0 [published]; legal fees £1,800 [assumption]; survey £600 [assumption]; mortgage valuation £0 [stated]
+    year 1 income £9,748: rent £880/month (local_authority figure, 2-bed), less 4 void weeks [published]
+    operating £2,355: management 10% £975 [assumption]; maintenance 8% £780 [assumption]; landlord insurance £350 [assumption]; safety certificates £250 [assumption]
+    mortgage interest £21,975  →  pre-tax -£14,582, tax £0, after-tax -£14,582
+    RETURNS  gross yield 2.0%  net yield 1.5%  cash-on-cash -8.7%
+    basis: assumption (weakest input); inputs: rent=880 [published 2026-08-01]; management=0.10 [assumption]; voids=4 [assumption]
+    ! private water supply or drainage: lender valuation and holiday-let insurance may ask questions
+    ! NOT ELIGIBLE with this lender and product; returns shown for information only
+
+  SHORT LET  Leeds Building Society (holiday let)  HL2-75 Holiday Let 2 Year Fixed to 31/01/2029, 75% LTV
+    loan £375,000 at 6.50% (published), LTV 75%, stress 8.50%
+    NOT ELIGIBLE
+      ok   property use: short_let is an accepted use (https://leedsbuildingsociety.co.uk/intermediaries/products/holiday-let-mortgages)
+      ok   minimum property value: price £500,000 vs minimum £0
+      ok   LTV: LTV 75.0% vs maximum 75%
+      ok   minimum income: earned income £45,000 vs minimum £40,000
+      FAIL rental cover: rent £3,227/month vs required £3,852 (FAILS by £624; stress 8.50% × ICR 145%)
+    cash in £179,400: deposit (25%) £125,000 [stated]; SDLT incl. additional-property surcharge £40,000 [published]; product fee £0 [published]; legal fees £1,800 [assumption]; survey £600 [assumption]; mortgage valuation £0 [stated]; furnishing and equipment £12,000 [assumption]
+    year 1 income £38,729: ADR $242 ≈ £186 × 208 nights (57% occupancy, county figure) [published]
+    operating £18,926: management 18% £6,971 [assumption]; platform fee 3% £1,162 [assumption]; cleaning £80 × 52 stays £4,160 [assumption]; utilities (owner pays) £2,160 [assumption]; maintenance 10% £3,873 [assumption]; holiday-let insurance £600 [assumption]; business rates (≥70 let nights; small business rate relief assumed) £0 [assumption]
+    mortgage interest £24,375  →  pre-tax -£4,572, tax £0, after-tax -£4,572
+    RETURNS  gross yield 7.8%  net yield 4.0%  cash-on-cash -2.6%, break-even occupancy 68.6%  [business rates (208 let nights ≥ 70)]
+    basis: assumption (weakest input); inputs: adr=242 [published 2026-10-13]; occupancy=0.57 [published 2026-10-13]; fx=1.30 [assumption]; management=0.18 [assumption]; cleaning=80 [assumption]
+    ! listing does not state whether holiday-let use is permitted; check the title and planning history
+    ! private water supply or drainage: lender valuation and holiday-let insurance may ask questions
+    ! NOT ELIGIBLE with this lender and product; returns shown for information only
+
+  SHORT LET  Leeds Building Society (holiday let)  HL5-75 Holiday Let 5 Year Fixed to 31/01/2032, 75% LTV
+    loan £375,000 at 6.19% (published), LTV 75%, stress 7.19%
+    NOT ELIGIBLE
+      ok   property use: short_let is an accepted use (https://leedsbuildingsociety.co.uk/intermediaries/products/holiday-let-mortgages)
+      ok   minimum property value: price £500,000 vs minimum £0
+      ok   LTV: LTV 75.0% vs maximum 75%
+      ok   minimum income: earned income £45,000 vs minimum £40,000
+      FAIL rental cover: rent £3,227/month vs required £3,258 (FAILS by £31; stress 7.19% × ICR 145%)
+    cash in £179,400: deposit (25%) £125,000 [stated]; SDLT incl. additional-property surcharge £40,000 [published]; product fee £0 [published]; legal fees £1,800 [assumption]; survey £600 [assumption]; mortgage valuation £0 [stated]; furnishing and equipment £12,000 [assumption]
+    year 1 income £38,729: ADR $242 ≈ £186 × 208 nights (57% occupancy, county figure) [published]
+    operating £18,926: management 18% £6,971 [assumption]; platform fee 3% £1,162 [assumption]; cleaning £80 × 52 stays £4,160 [assumption]; utilities (owner pays) £2,160 [assumption]; maintenance 10% £3,873 [assumption]; holiday-let insurance £600 [assumption]; business rates (≥70 let nights; small business rate relief assumed) £0 [assumption]
+    mortgage interest £23,212  →  pre-tax -£3,409, tax £0, after-tax -£3,409
+    RETURNS  gross yield 7.8%  net yield 4.0%  cash-on-cash -1.9%, break-even occupancy 65.6%  [business rates (208 let nights ≥ 70)]
+    basis: assumption (weakest input); inputs: adr=242 [published 2026-10-13]; occupancy=0.57 [published 2026-10-13]; fx=1.30 [assumption]; management=0.18 [assumption]; cleaning=80 [assumption]
+    ! listing does not state whether holiday-let use is permitted; check the title and planning history
+    ! private water supply or drainage: lender valuation and holiday-let insurance may ask questions
+    ! NOT ELIGIBLE with this lender and product; returns shown for information only
+  SHORT LET  Skipton Building Society  TRK2: excluded, short_let is NOT an accepted use (https://www.skipton-intermediaries.co.uk/criteria/a-z-lending-criteria/a-z-lending-criteria-btl)
+  SHORT LET  Skipton Building Society  R2606: excluded, short_let is NOT an accepted use (https://www.skipton-intermediaries.co.uk/criteria/a-z-lending-criteria/a-z-lending-criteria-btl)
+  SHORT LET  Skipton Building Society  R2605: excluded, short_let is NOT an accepted use (https://www.skipton-intermediaries.co.uk/criteria/a-z-lending-criteria/a-z-lending-criteria-btl)
+  SHORT LET  Skipton Building Society  R2604: excluded, short_let is NOT an accepted use (https://www.skipton-intermediaries.co.uk/criteria/a-z-lending-criteria/a-z-lending-criteria-btl)
+====================================================================================================
+Vildebeest Road, St Eval, Wadebridge (3-bed semi)  (PL27, St Eval)  https://www.rightmove.co.uk/properties/87843999
+  £285,000 stated 2026-10-16  |  3 bed semi detached, freehold  |  council tax band B  |  EPC C
+  note: Chain free; rear extension with open-plan kitchen/dining/living; wood-burning stove; ground-floor shower room; gas central heating; allocated parking
+  note: Former RAF St Eval estate: check for any estate covenants on letting before relying on a short-let strategy
+  note: Agent charges a non-refundable anti-money-laundering fee on offer acceptance
+  LONG LET   Leeds Building Society (holiday let)  HL2-75: excluded, long_let is NOT an accepted use (https://leedsbuildingsociety.co.uk/intermediaries/products/holiday-let-mortgages)
+  LONG LET   Leeds Building Society (holiday let)  HL5-75: excluded, long_let is NOT an accepted use (https://leedsbuildingsociety.co.uk/intermediaries/products/holiday-let-mortgages)
+
+  LONG LET   Skipton Building Society  TRK2 2 Year Tracker, Base Rate + 0.69%
+    loan £213,750 at 4.44% (stated), LTV 75%, stress 6.44%
+    NOT ELIGIBLE
+      ok   property use: long_let is an accepted use (https://www.skipton-intermediaries.co.uk/criteria/a-z-lending-criteria/a-z-lending-criteria-btl)
+      ok   minimum property value: price £285,000 vs minimum £75,000
+      ok   LTV: LTV 75.0% vs maximum 75%
+      ok   minimum income: earned income £45,000 vs minimum £20,000
+      FAIL rental cover: rent £1,077/month vs required £1,434 (FAILS by £357; stress 6.44% × ICR 125%)
+    cash in £93,145: deposit (25%) £71,250 [stated]; SDLT incl. additional-property surcharge £18,500 [published]; product fee £995 [stated]; legal fees £1,800 [assumption]; survey £600 [assumption]; mortgage valuation £0 [stated]
+    year 1 income £11,930: rent £1,077/month (local_authority figure, 3-bed), less 4 void weeks [published]
+    operating £3,227: management 10% £1,193 [assumption]; maintenance 8% £954 [assumption]; landlord insurance £350 [assumption]; safety certificates £250 [assumption]; estate charge £480 [stated]
+    mortgage interest £9,490  →  pre-tax -£788, tax £0, after-tax -£788
+    RETURNS  gross yield 4.2%  net yield 3.0%  cash-on-cash -0.8%
+    basis: assumption (weakest input); inputs: rent=1077 [published 2026-08-01]; management=0.10 [assumption]; voids=4 [assumption]
+    ! NOT ELIGIBLE with this lender and product; returns shown for information only
+
+  LONG LET   Skipton Building Society  R2606 Fixed, £1,995 fee (term unconfirmed)
+    loan £213,750 at 5.44% (published), LTV 75%, stress 7.44%
+    NOT ELIGIBLE
+      ok   property use: long_let is an accepted use (https://www.skipton-intermediaries.co.uk/criteria/a-z-lending-criteria/a-z-lending-criteria-btl)
+      ok   minimum property value: price £285,000 vs minimum £75,000
+      ok   LTV: LTV 75.0% vs maximum 75%
+      ok   minimum income: earned income £45,000 vs minimum £20,000
+      FAIL rental cover: rent £1,077/month vs required £1,657 (FAILS by £580; stress 7.44% × ICR 125%)
+    cash in £94,145: deposit (25%) £71,250 [stated]; SDLT incl. additional-property surcharge £18,500 [published]; product fee £1,995 [published]; legal fees £1,800 [assumption]; survey £600 [assumption]; mortgage valuation £0 [stated]
+    year 1 income £11,930: rent £1,077/month (local_authority figure, 3-bed), less 4 void weeks [published]
+    operating £3,227: management 10% £1,193 [assumption]; maintenance 8% £954 [assumption]; landlord insurance £350 [assumption]; safety certificates £250 [assumption]; estate charge £480 [stated]
+    mortgage interest £11,628  →  pre-tax -£2,926, tax £0, after-tax -£2,926
+    RETURNS  gross yield 4.2%  net yield 3.0%  cash-on-cash -3.1%
+    basis: assumption (weakest input); inputs: rent=1077 [published 2026-08-01]; management=0.10 [assumption]; voids=4 [assumption]
+    ! NOT ELIGIBLE with this lender and product; returns shown for information only
+
+  LONG LET   Skipton Building Society  R2605 Fixed, £995 fee (term unconfirmed)
+    loan £213,750 at 5.55% (published), LTV 75%, stress 7.55%
+    NOT ELIGIBLE
+      ok   property use: long_let is an accepted use (https://www.skipton-intermediaries.co.uk/criteria/a-z-lending-criteria/a-z-lending-criteria-btl)
+      ok   minimum property value: price £285,000 vs minimum £75,000
+      ok   LTV: LTV 75.0% vs maximum 75%
+      ok   minimum income: earned income £45,000 vs minimum £20,000
+      FAIL rental cover: rent £1,077/month vs required £1,681 (FAILS by £604; stress 7.55% × ICR 125%)
+    cash in £93,145: deposit (25%) £71,250 [stated]; SDLT incl. additional-property surcharge £18,500 [published]; product fee £995 [published]; legal fees £1,800 [assumption]; survey £600 [assumption]; mortgage valuation £0 [stated]
+    year 1 income £11,930: rent £1,077/month (local_authority figure, 3-bed), less 4 void weeks [published]
+    operating £3,227: management 10% £1,193 [assumption]; maintenance 8% £954 [assumption]; landlord insurance £350 [assumption]; safety certificates £250 [assumption]; estate charge £480 [stated]
+    mortgage interest £11,863  →  pre-tax -£3,161, tax £0, after-tax -£3,161
+    RETURNS  gross yield 4.2%  net yield 3.0%  cash-on-cash -3.4%
+    basis: assumption (weakest input); inputs: rent=1077 [published 2026-08-01]; management=0.10 [assumption]; voids=4 [assumption]
+    ! NOT ELIGIBLE with this lender and product; returns shown for information only
+
+  LONG LET   Skipton Building Society  R2604 Fixed, fee-free (term unconfirmed)
+    loan £213,750 at 5.86% (published), LTV 75%, stress 7.86%
+    NOT ELIGIBLE
+      ok   property use: long_let is an accepted use (https://www.skipton-intermediaries.co.uk/criteria/a-z-lending-criteria/a-z-lending-criteria-btl)
+      ok   minimum property value: price £285,000 vs minimum £75,000
+      ok   LTV: LTV 75.0% vs maximum 75%
+      ok   minimum income: earned income £45,000 vs minimum £20,000
+      FAIL rental cover: rent £1,077/month vs required £1,750 (FAILS by £673; stress 7.86% × ICR 125%)
+    cash in £92,150: deposit (25%) £71,250 [stated]; SDLT incl. additional-property surcharge £18,500 [published]; product fee £0 [published]; legal fees £1,800 [assumption]; survey £600 [assumption]; mortgage valuation £0 [stated]
+    year 1 income £11,930: rent £1,077/month (local_authority figure, 3-bed), less 4 void weeks [published]
+    operating £3,227: management 10% £1,193 [assumption]; maintenance 8% £954 [assumption]; landlord insurance £350 [assumption]; safety certificates £250 [assumption]; estate charge £480 [stated]
+    mortgage interest £12,526  →  pre-tax -£3,823, tax £0, after-tax -£3,823
+    RETURNS  gross yield 4.2%  net yield 3.0%  cash-on-cash -4.2%
+    basis: assumption (weakest input); inputs: rent=1077 [published 2026-08-01]; management=0.10 [assumption]; voids=4 [assumption]
+    ! NOT ELIGIBLE with this lender and product; returns shown for information only
+
+  SHORT LET  Leeds Building Society (holiday let)  HL2-75 Holiday Let 2 Year Fixed to 31/01/2029, 75% LTV
+    loan £213,750 at 6.50% (published), LTV 75%, stress 8.50%
+    ELIGIBLE
+      ok   property use: short_let is an accepted use (https://leedsbuildingsociety.co.uk/intermediaries/products/holiday-let-mortgages)
+      ok   minimum property value: price £285,000 vs minimum £0
+      ok   LTV: LTV 75.0% vs maximum 75%
+      ok   minimum income: earned income £45,000 vs minimum £40,000
+      ok   rental cover: rent £3,227/month vs required £2,195 (passes by £1,032; stress 8.50% × ICR 145%)
+    cash in £104,150: deposit (25%) £71,250 [stated]; SDLT incl. additional-property surcharge £18,500 [published]; product fee £0 [published]; legal fees £1,800 [assumption]; survey £600 [assumption]; mortgage valuation £0 [stated]; furnishing and equipment £12,000 [assumption]
+    year 1 income £38,729: ADR $242 ≈ £186 × 208 nights (57% occupancy, county figure) [published]
+    operating £19,406: management 18% £6,971 [assumption]; platform fee 3% £1,162 [assumption]; cleaning £80 × 52 stays £4,160 [assumption]; utilities (owner pays) £2,160 [assumption]; maintenance 10% £3,873 [assumption]; holiday-let insurance £600 [assumption]; business rates (≥70 let nights; small business rate relief assumed) £0 [assumption]; estate charge £480 [stated]
+    mortgage interest £13,894  →  pre-tax £5,429, tax £1,086, after-tax £4,344
+    RETURNS  gross yield 13.6%  net yield 6.8%  cash-on-cash 4.2%, break-even occupancy 43.4%  [business rates (208 let nights ≥ 70)]
+    basis: assumption (weakest input); inputs: adr=242 [published 2026-10-13]; occupancy=0.57 [published 2026-10-13]; fx=1.30 [assumption]; management=0.18 [assumption]; cleaning=80 [assumption]
+    ! listing does not state whether holiday-let use is permitted; check the title and planning history
+
+  SHORT LET  Leeds Building Society (holiday let)  HL5-75 Holiday Let 5 Year Fixed to 31/01/2032, 75% LTV
+    loan £213,750 at 6.19% (published), LTV 75%, stress 7.19%
+    ELIGIBLE
+      ok   property use: short_let is an accepted use (https://leedsbuildingsociety.co.uk/intermediaries/products/holiday-let-mortgages)
+      ok   minimum property value: price £285,000 vs minimum £0
+      ok   LTV: LTV 75.0% vs maximum 75%
+      ok   minimum income: earned income £45,000 vs minimum £40,000
+      ok   rental cover: rent £3,227/month vs required £1,857 (passes by £1,370; stress 7.19% × ICR 145%)
+    cash in £104,150: deposit (25%) £71,250 [stated]; SDLT incl. additional-property surcharge £18,500 [published]; product fee £0 [published]; legal fees £1,800 [assumption]; survey £600 [assumption]; mortgage valuation £0 [stated]; furnishing and equipment £12,000 [assumption]
+    year 1 income £38,729: ADR $242 ≈ £186 × 208 nights (57% occupancy, county figure) [published]
+    operating £19,406: management 18% £6,971 [assumption]; platform fee 3% £1,162 [assumption]; cleaning £80 × 52 stays £4,160 [assumption]; utilities (owner pays) £2,160 [assumption]; maintenance 10% £3,873 [assumption]; holiday-let insurance £600 [assumption]; business rates (≥70 let nights; small business rate relief assumed) £0 [assumption]; estate charge £480 [stated]
+    mortgage interest £13,231  →  pre-tax £6,092, tax £1,218, after-tax £4,874
+    RETURNS  gross yield 13.6%  net yield 6.8%  cash-on-cash 4.7%, break-even occupancy 41.6%  [business rates (208 let nights ≥ 70)]
+    basis: assumption (weakest input); inputs: adr=242 [published 2026-10-13]; occupancy=0.57 [published 2026-10-13]; fx=1.30 [assumption]; management=0.18 [assumption]; cleaning=80 [assumption]
+    ! listing does not state whether holiday-let use is permitted; check the title and planning history
+  SHORT LET  Skipton Building Society  TRK2: excluded, short_let is NOT an accepted use (https://www.skipton-intermediaries.co.uk/criteria/a-z-lending-criteria/a-z-lending-criteria-btl)
+  SHORT LET  Skipton Building Society  R2606: excluded, short_let is NOT an accepted use (https://www.skipton-intermediaries.co.uk/criteria/a-z-lending-criteria/a-z-lending-criteria-btl)
+  SHORT LET  Skipton Building Society  R2605: excluded, short_let is NOT an accepted use (https://www.skipton-intermediaries.co.uk/criteria/a-z-lending-criteria/a-z-lending-criteria-btl)
+  SHORT LET  Skipton Building Society  R2604: excluded, short_let is NOT an accepted use (https://www.skipton-intermediaries.co.uk/criteria/a-z-lending-criteria/a-z-lending-criteria-btl)
+====================================================================================================
+RANKED BY CASH-ON-CASH (eligible first). Every figure above is an estimate resting on the listed inputs.
+
+candidate                          strategy   lender / product                               elig     cash in  after-tax     CoC  gross    net basis     
+Vildebeest Road, St Eval, Wadebrid short_let  Leeds Building Society (holiday let) HL5-75    yes     £104,150     £4,874    4.7%  13.6%   6.8% assumption
+Vildebeest Road, St Eval, Wadebrid short_let  Leeds Building Society (holiday let) HL2-75    yes     £104,150     £4,344    4.2%  13.6%   6.8% assumption
+Vildebeest Road, St Eval, Wadebrid long_let   Skipton Building Society TRK2                  NO       £93,145      -£788   -0.8%   4.2%   3.0% assumption
+Little Carharrack, Redruth (2-bed  short_let  Leeds Building Society (holiday let) HL5-75    NO      £179,400    -£3,409   -1.9%   7.8%   4.0% assumption
+Little Carharrack, Redruth (2-bed  short_let  Leeds Building Society (holiday let) HL2-75    NO      £179,400    -£4,572   -2.6%   7.8%   4.0% assumption
+Vildebeest Road, St Eval, Wadebrid long_let   Skipton Building Society R2606                 NO       £94,145    -£2,926   -3.1%   4.2%   3.0% assumption
+Vildebeest Road, St Eval, Wadebrid long_let   Skipton Building Society R2605                 NO       £93,145    -£3,161   -3.4%   4.2%   3.0% assumption
+Vildebeest Road, St Eval, Wadebrid long_let   Skipton Building Society R2604                 NO       £92,150    -£3,823   -4.2%   4.2%   3.0% assumption
+Little Carharrack, Redruth (2-bed  long_let   Skipton Building Society TRK2                  NO      £168,395    -£9,257   -5.5%   2.0%   1.5% assumption
+Little Carharrack, Redruth (2-bed  long_let   Skipton Building Society R2606                 NO      £169,395   -£13,007   -7.7%   2.0%   1.5% assumption
+Little Carharrack, Redruth (2-bed  long_let   Skipton Building Society R2605                 NO      £168,395   -£13,419   -8.0%   2.0%   1.5% assumption
+Little Carharrack, Redruth (2-bed  long_let   Skipton Building Society R2604                 NO      £167,400   -£14,582   -8.7%   2.0%   1.5% assumption

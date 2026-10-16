@@ -1,0 +1,50 @@
+# Leeds Building Society, holiday let. Products are published; the cover test
+# is not on the public page and is entered as an assumption to confirm.
+id: leeds
+name: Leeds Building Society (holiday let)
+criteria_url: https://leedsbuildingsociety.co.uk/intermediaries/products/holiday-let-mortgages
+criteria_as_of: 2026-09-21
+accepted_uses: [short_let]
+accepts_limited_company: false   # not mentioned on the product page; treated as not accepted until confirmed
+accepts_portfolio_landlord: true
+max_ltv: "0.75"
+min_property_value:
+  value: "0"
+  basis: assumption
+  source: not stated on the Leeds holiday-let product page
+  as_of: 2026-10-16
+  note: "No minimum shown; confirm with the criteria page"
+min_earned_income:
+  value: "40000"
+  basis: published
+  source: https://leedsbuildingsociety.co.uk/intermediaries/products/holiday-let-mortgages
+  as_of: 2026-09-21
+  note: "'minimum primary income of £40,000', or £60,000 combined for joint applicants"
+icr:
+  basic: "1.45"
+  higher: "1.45"
+icr_portfolio: "1.45"
+stress:
+  floor: "0.055"
+  uplift_short: "0.02"
+  uplift_long: "0.01"
+  long_fix_years: 5
+products:
+  - code: HL2-75
+    name: Holiday Let 2 Year Fixed to 31/01/2029, 75% LTV
+    kind: fixed
+    term_years: 2
+    max_ltv: "0.75"
+    rate: { value: "0.0650", basis: published, source: "https://leedsbuildingsociety.co.uk/intermediaries/products/holiday-let-mortgages", as_of: 2026-09-21, note: "then 8.04% variable; APRC 8.1%; max loan £750,000" }
+    fee: { value: "0", basis: published, source: "https://leedsbuildingsociety.co.uk/intermediaries/products/holiday-let-mortgages", as_of: 2026-09-21 }
+  - code: HL5-75
+    name: Holiday Let 5 Year Fixed to 31/01/2032, 75% LTV
+    kind: fixed
+    term_years: 5
+    max_ltv: "0.75"
+    rate: { value: "0.0619", basis: published, source: "https://leedsbuildingsociety.co.uk/intermediaries/products/holiday-let-mortgages", as_of: 2026-09-21, note: "then 8.04% variable; APRC 7.6%; max loan £750,000" }
+    fee: { value: "0", basis: published, source: "https://leedsbuildingsociety.co.uk/intermediaries/products/holiday-let-mortgages", as_of: 2026-09-21 }
+notes:
+  - "ICR 145% at max(rate + 2%, 5.5%) is an ASSUMPTION mirroring Cumberland's published holiday-let test (https://www.cumberland.co.uk/business/mortgages/holiday-let/lending-criteria); Leeds publishes its own in the 'Assessment of Rental Income' document, not on the product page. Confirm before relying on an eligibility result."
+  - "Income basis: Leeds assesses on 'an average of low, medium and high season expected income' from a letting agent on its approved list (Mortgage Solutions, 5 Aug 2021). This tool feeds it the projected short-let gross income / 12; a real application needs the agent's letter."
+  - "Cumberland BS is the alternative with fuller published criteria: min property £150,000, min income £25,000, rent taken net of 20% letting costs, 145% cover (125% for limited companies) at max(5.5%, rate + 2%); accepts limited company SPVs; LTV not shown on the criteria page."

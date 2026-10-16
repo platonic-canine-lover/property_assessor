@@ -1,0 +1,36 @@
+# Market snapshot, Cornwall, taken 16 October 2026. Every figure: value, basis, source, as_of.
+# Granularity is stated honestly: nothing here is postcode-level.
+long_let_rent_monthly:
+  - { area: Cornwall, bedrooms: 1, granularity: local_authority, value: { value: "688",  basis: published, source: "https://www.ons.gov.uk/visualisations/housingpriceslocal/E06000052/", as_of: 2026-08-01, note: "ONS average private rent, Cornwall, August 2026" } }
+  - { area: Cornwall, bedrooms: 2, granularity: local_authority, value: { value: "880",  basis: published, source: "https://www.ons.gov.uk/visualisations/housingpriceslocal/E06000052/", as_of: 2026-08-01, note: "ONS average private rent, Cornwall, August 2026" } }
+  - { area: Cornwall, bedrooms: 3, granularity: local_authority, value: { value: "1077", basis: published, source: "https://www.ons.gov.uk/visualisations/housingpriceslocal/E06000052/", as_of: 2026-08-01, note: "ONS average private rent, Cornwall, August 2026; +2.1% on the year" } }
+  - { area: Cornwall, bedrooms: 4, granularity: local_authority, value: { value: "1502", basis: published, source: "https://www.ons.gov.uk/visualisations/housingpriceslocal/E06000052/", as_of: 2026-08-01, note: "ONS average private rent, Cornwall, 4+ bed, August 2026" } }
+short_let_adr_usd:
+  - { area: Cornwall, granularity: county, value: { value: "242", basis: published, source: "https://www.airdna.co/vacation-rental-data/app/gb/south-west-england/cornwall/revenue", as_of: 2026-10-13, note: "AirDNA trailing 12 months Sep 2025 to Sep 2026, shown in USD; down 14.6% year on year; 18,386 active listings, down 32.9% year on year. No town or bedroom breakdown is public; postcode-level needs an AirDNA export (optional CSV import)." } }
+short_let_occupancy:
+  - { area: Cornwall, granularity: county, value: { value: "0.57", basis: published, source: "https://www.airdna.co/vacation-rental-data/app/gb/south-west-england/cornwall/revenue", as_of: 2026-10-13, note: "AirDNA annual occupancy, trailing 12 months; Cornwall is strongly seasonal (seasonality subscore 48), so this is a summer-heavy average, not a steady 57%." } }
+sold_median:
+  - { area: TR16, granularity: postcode_district, value: { value: "407766", basis: published, source: "https://www.rightmove.co.uk/house-prices/tr16.html", as_of: 2026-07-31, note: "Rightmove average sold price, detached, TR16, last year (Land Registry data to 31 Jul 2026, updated 17 Sep 2026). Overall TR16 average £326,074, up 3% on the year." } }
+  - { area: PL27, granularity: postcode_district, value: { value: "292811", basis: published, source: "https://www.rightmove.co.uk/house-prices/pl27.html", as_of: 2026-07-31, note: "Rightmove average sold price, semi-detached, PL27, last year. Overall PL27 average £459,171 is inflated by Rock and Trebetherick (sales to £2.8m); St Eval is a former RAF estate and a different sub-market; down 7% on the year." } }
+comparables:
+  TR16_detached_2bed_recent:
+    source: https://www.rightmove.co.uk/house-prices/tr16.html
+    as_of: 2026-07-31
+    basis: published
+    sales:
+      - { price: 295000, date: 2026-07-10, address: "Tarnside, Bridge, Redruth TR16 4QG", type: detached, beds: 2 }
+      - { price: 305000, date: 2026-05-22, address: "43 Pennance Parc, Redruth TR16 5TY", type: detached, beds: 2 }
+      - { price: 227500, date: 2026-06-30, address: "5 Bosawna Close, Redruth TR16 5LB", type: detached, beds: 2 }
+      - { price: 450000, date: 2026-07-02, address: "White Croft, Parc Erissey, Redruth TR16 4HN", type: detached, beds: null }
+      - { price: 405000, date: 2026-06-25, address: "Ferndale, Pennance Lane, Redruth TR16 5TL", type: detached, beds: 3 }
+      - { price: 650000, date: 2026-06-08, address: "Laity Cottage, Rayle Bottoms, Redruth TR16 4QT", type: detached, beds: 4 }
+  PL27_semi_3bed_recent:
+    source: https://www.rightmove.co.uk/house-prices/pl27.html
+    as_of: 2026-07-31
+    basis: published
+    sales:
+      - { price: 300000, date: 2026-05-27, address: "96 Talmena Avenue, Wadebridge PL27 7RR", type: semi_detached, beds: 3 }
+      - { price: 370000, date: 2026-07-24, address: "4 Keston Gardens, West Hill, Wadebridge PL27 7FJ", type: semi_detached, beds: 4 }
+      - { price: 245000, date: 2026-06-26, address: "23 Trevarner Meadow, Wadebridge PL27 6GF", type: semi_detached, beds: null }
+      - { price: 275000, date: 2026-05-22, address: "23 Trevanion Road, Wadebridge PL27 7NZ", type: terraced, beds: 3 }
+    note: "No St Eval sale appears in the 25 most recent PL27 transactions; the Wadebridge town sales above are the nearest by type."

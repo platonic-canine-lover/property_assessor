@@ -1,0 +1,9 @@
+# The buyer. tax_band drives the lender's cover test (125% vs 145%) and the tax on income.
+tax_band: basic
+gross_earned_income: { value: "45000", basis: assumption, source: "placeholder above Skipton's £20,000 and Leeds' £40,000 minimums; set your own" }
+owns_other_residential_property: true     # triggers the 5% SDLT surcharge
+uk_resident: true
+limited_company: false                    # Skipton does not lend to companies
+portfolio_landlord: false
+deposit_fraction: "0.25"
+interest_only: true

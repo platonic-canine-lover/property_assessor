@@ -1,0 +1,78 @@
+# Skipton Building Society, buy-to-let. Transcribed from the published
+# criteria and product guide; every figure carries its source and date.
+id: skipton
+name: Skipton Building Society
+criteria_url: https://www.skipton-intermediaries.co.uk/criteria/a-z-lending-criteria/a-z-lending-criteria-btl
+criteria_as_of: 2026-10-16
+accepted_uses: [long_let]        # "Holiday lets" and "Sub-letting" are listed as unacceptable; short_let is therefore excluded
+accepts_limited_company: false   # "does not accept applications for limited company BTLs" nor SPVs
+accepts_portfolio_landlord: true # with higher income and ICR requirements, below
+max_ltv: "0.75"                  # "Maximum 75% LTV for all other BTL applications (subject to product maximum)"
+new_build_incentive_max_ltv: "0.70"  # "Where a New Build has a financial incentive, the maximum LTV drops to 70%"
+min_property_value:
+  value: "75000"
+  basis: published
+  source: https://www.skipton-intermediaries.co.uk/criteria/a-z-lending-criteria/a-z-lending-criteria-btl
+  as_of: 2026-10-16
+min_earned_income:
+  value: "20000"
+  basis: published
+  source: https://www.skipton.co.uk/mortgages/buy-to-let
+  as_of: 2026-10-16
+  note: "£45,000 for at least one applicant if a portfolio landlord"
+icr:
+  basic: "1.25"    # "Standard-rate taxpayers: 125%"
+  higher: "1.45"   # "Higher-rate taxpayers and portfolio landlords: 145%"
+icr_portfolio: "1.45"
+stress:
+  floor: "0.055"         # "the higher of; product rate plus 2% or 5.5%"
+  uplift_short: "0.02"   # fixes under 5 years, and trackers
+  uplift_long: "0.01"    # "5-year fix or longer: ... product rate plus 1%"
+  long_fix_years: 5
+products:
+  - code: TRK2
+    name: 2 Year Tracker, Base Rate + 0.69%
+    kind: tracker
+    tracker_margin: "0.0069"
+    term_years: 2
+    max_ltv: "0.75"
+    rate:
+      value: "0.0444"
+      basis: stated
+      source: Skipton product finder, screenshot supplied by the user
+      as_of: 2026-10-16
+      note: "Shown as 4.44% initial, APRC 6.20%, £995 fee, interest-only allowed. CONFIRM this is the buy-to-let variant: the finder card does not say so, and the £555/month example is the finder's default £150,000 loan."
+    base_rate_assumed:
+      value: "0.0375"
+      basis: estimate
+      source: 4.44% quoted rate minus 0.69% margin
+      as_of: 2026-10-16
+    fee:
+      value: "995"
+      basis: stated
+      source: Skipton product finder, screenshot supplied by the user
+      as_of: 2026-10-16
+  - code: R2606
+    name: Fixed, £1,995 fee (term unconfirmed)
+    kind: fixed
+    term_years: null
+    max_ltv: "0.75"
+    rate: { value: "0.0544", basis: published, source: "https://www.skipton-intermediaries.co.uk/content/dam/sbs-sites/intermediaries/documents/products/Residential-BTL-Mortgage-product-guide.pdf", as_of: 2026-10-02, note: "Guide does not label 2- vs 5-year clearly; end dates in the guide are 31/01/29 and 31/01/32. Until confirmed, the short-fix stress uplift is applied (the harsher case)." }
+    fee: { value: "1995", basis: published, source: "Skipton BTL product guide 02/10/2026", as_of: 2026-10-02 }
+  - code: R2605
+    name: Fixed, £995 fee (term unconfirmed)
+    kind: fixed
+    term_years: null
+    max_ltv: "0.75"
+    rate: { value: "0.0555", basis: published, source: "Skipton BTL product guide 02/10/2026", as_of: 2026-10-02 }
+    fee: { value: "995", basis: published, source: "Skipton BTL product guide 02/10/2026", as_of: 2026-10-02 }
+  - code: R2604
+    name: Fixed, fee-free (term unconfirmed)
+    kind: fixed
+    term_years: null
+    max_ltv: "0.75"
+    rate: { value: "0.0586", basis: published, source: "Skipton BTL product guide 02/10/2026", as_of: 2026-10-02 }
+    fee: { value: "0", basis: published, source: "Skipton BTL product guide 02/10/2026", as_of: 2026-10-02 }
+notes:
+  - "Consumer page: 'Your rental income can cover 125% of your mortgage payments', deposit at least 25%, income at least £20k, interest-only or repayment (https://www.skipton.co.uk/mortgages/buy-to-let)."
+  - "The user's reason for choosing Skipton ('most likely to approve') is a judgement, not a published fact."

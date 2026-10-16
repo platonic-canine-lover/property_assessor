@@ -1,0 +1,26 @@
+# Operating-cost assumptions. Each is a Sourced value; most are ASSUMPTIONS
+# with a reason, and the report says so beside every figure they touch.
+purchase:
+  legal_fees:        { value: "1800", basis: assumption, source: "typical conveyancing quote for a BTL purchase", note: "replace with a quote" }
+  survey:            { value: "600",  basis: assumption, source: "RICS Level 2 survey, typical", note: "replace with a quote" }
+  mortgage_valuation: { value: "0",    basis: stated, source: "Skipton product finder: no charge for a valuation, subject to criteria" }
+long_let:
+  management_fee_fraction: { value: "0.10", basis: assumption, source: "full-management fee quoted by Cornwall letting agents, typical range 10-12%" }
+  void_weeks_per_year:     { value: "4",    basis: assumption, source: "one month between tenancies" }
+  maintenance_fraction:    { value: "0.08", basis: assumption, source: "8% of rent set aside for repairs" }
+  landlord_insurance:      { value: "350",  basis: assumption, source: "typical landlord buildings and liability policy", note: "replace with a quote" }
+  tenant_pays_council_tax: true
+  tenant_pays_utilities: true
+  safety_certificates:     { value: "250",  basis: assumption, source: "gas safety, EICR amortised, legionella" }
+short_let:
+  management_fee_fraction: { value: "0.18", basis: assumption, source: "Cornwall holiday-let agency full-management fee, typical range 15-22%" }
+  platform_fee_fraction:   { value: "0.03", basis: assumption, source: "Airbnb host-only fee for most hosts; the 15% host-only option exists" }
+  cleaning_per_stay:       { value: "80",   basis: assumption, source: "changeover clean for a 2-3 bed, Cornwall" }
+  average_stay_nights:     { value: "4",    basis: assumption, source: "AirDNA typical for Cornwall; measure from your own bookings" }
+  utilities_monthly:       { value: "180",  basis: assumption, source: "owner pays gas/electric, water, broadband on a holiday let" }
+  maintenance_fraction:    { value: "0.10", basis: assumption, source: "higher wear than a long let" }
+  insurance:               { value: "600",  basis: assumption, source: "holiday-let insurance including public liability", note: "replace with a quote" }
+  furnishing_one_off:      { value: "12000", basis: assumption, source: "furnish and equip a 2-3 bed to holiday-let standard" }
+  owner_pays_council_tax: true
+fx:
+  usd_per_gbp: { value: "1.30", basis: assumption, source: "PLACEHOLDER; set from your bank or the ECB rate on the day. AirDNA publishes ADR in USD." }

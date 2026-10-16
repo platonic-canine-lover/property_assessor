@@ -1,0 +1,53 @@
+[project]
+name = "property-assessor"
+version = "0.1.0"
+description = "Compare UK property candidates as long-let or short-let investments: lender eligibility, purchase costs, returns, with every figure sourced."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { file = "LICENSE" }
+dependencies = [
+  "pydantic>=2.9",
+  "typer>=0.15",
+  "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3",
+  "ruff>=0.8",
+  "mypy>=1.13",
+  "types-PyYAML",
+]
+
+[project.scripts]
+assess = "property_assessor.cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/property_assessor"]
+
+[tool.ruff]
+line-length = 140
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "N", "W", "RUF"]
+ignore = ["RUF001", "RUF002", "RUF003", "UP046"]  # × and − are deliberate in report text; PEP 695 generics break pydantic's generic models
+
+[tool.ruff.lint.per-file-ignores]
+# Report text and check messages are long f-strings; wrapping them hurts more than it helps.
+"src/property_assessor/report.py" = ["E501"]
+"src/property_assessor/returns.py" = ["E501"]
+"src/property_assessor/lenders.py" = ["E501"]
+
+[tool.mypy]
+strict = true
+packages = ["property_assessor"]
+mypy_path = "src"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

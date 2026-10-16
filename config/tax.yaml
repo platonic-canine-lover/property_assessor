@@ -1,0 +1,26 @@
+# UK tax figures the model needs. Every entry: value, basis, source, as_of.
+sdlt:
+  source: https://www.gov.uk/stamp-duty-land-tax/residential-property-rates
+  as_of: 2026-10-16
+  basis: published
+  bands:                      # portion of price → rate (single residential property)
+    - { up_to: 125000,  rate: "0.00" }
+    - { up_to: 250000,  rate: "0.02" }
+    - { up_to: 925000,  rate: "0.05" }
+    - { up_to: 1500000, rate: "0.10" }
+    - { up_to: null,    rate: "0.12" }
+  additional_property_surcharge: "0.05"   # "You usually pay 5% on top of these rates if you own another residential property"
+  non_resident_surcharge: "0.02"
+income_tax:
+  source: https://www.gov.uk/income-tax-rates
+  as_of: 2026-10-16
+  basis: published
+  marginal_rate: { basic: "0.20", higher: "0.40" }
+  # Individual landlords cannot deduct mortgage interest; they get a 20% tax credit on it instead.
+  finance_cost_credit: "0.20"
+  finance_cost_credit_source: https://www.gov.uk/guidance/changes-to-tax-relief-for-residential-landlords-how-its-worked-out-including-case-studies
+furnished_holiday_let:
+  note: "The furnished-holiday-let tax regime was abolished from April 2025; short-let income is treated as ordinary property income here. Do not apply FHL capital allowances or interest deductibility."
+  source: https://www.gov.uk/government/publications/abolition-of-the-furnished-holiday-lettings-tax-regime
+  basis: published
+  as_of: 2026-10-16

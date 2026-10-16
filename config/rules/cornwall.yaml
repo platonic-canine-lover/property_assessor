@@ -1,0 +1,25 @@
+# Cornwall-specific rules that change the cost base of a short let.
+council_tax:
+  source: https://www.cornwall.gov.uk/council-tax/your-council-tax-bill/council-tax-2026/council-tax-bands-2026
+  as_of: 2026-10-16
+  basis: published
+  note: "2026/27 totals (Cornwall Council + Devon and Cornwall Police + average parish precept); the Carharrack and St Eval parish precepts differ slightly from the average"
+  annual_by_band: { A: "1727.29", B: "2015.16", C: "2303.05", D: "2590.93", E: "3166.70", F: "3742.46", G: "4318.22", H: "5181.86" }
+second_home_premium:
+  source: https://www.cornwall.gov.uk/council-tax/second-homes
+  as_of: 2026-10-16
+  basis: published
+  multiplier: "1.00"   # "an additional 100% Council Tax premium on second homes, effective from 1 April 2025"
+business_rates_instead_of_council_tax:
+  source: https://www.cornwall.gov.uk/council-tax/second-homes
+  as_of: 2026-10-16
+  basis: published
+  available_nights_last_12m: 140
+  available_nights_next_12m: 140
+  let_nights_last_12m: 70
+  note: "A self-catering property is rated for Business Rates, not Council Tax, only if all three are met. Below the let-nights threshold the second-home premium applies."
+  small_business_rate_relief:
+    note: "ASSUMPTION: a single small holiday let with rateable value under £12,000 gets 100% small business rate relief, so the annual charge is taken as £0 once rated. Rateable value is set by the VOA per property and is not known for either candidate."
+    basis: assumption
+    source: https://www.gov.uk/apply-for-business-rate-relief/small-business-rate-relief
+    annual_charge_if_rated: "0"
