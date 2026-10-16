@@ -148,3 +148,58 @@ def test_leeds_accepts_short_let_and_needs_40k_income(leeds, basic_applicant):
         for c in assess(leeds, leeds.product("HL2-75"), candidate("285000"), low, "short_let", stated("3000")).checks
         if c.name == "minimum income"
     ).passed
+
+
+# Review 3: the cover test and the tax band. Skipton's ratio is 125% for a basic-rate
+# taxpayer and 145% for a higher-rate one; Leeds applies 145% to both. When the rental
+# profit may cross the threshold, a pass on the lower ratio alone is not a pass.
+
+
+def test_cover_is_conditional_when_the_band_could_change_the_test(skipton, basic_applicant):
+    # £2,700 clears the 125% requirement (£2,515.63) but not the 145% one (£2,918.13).
+    e = assess(skipton, skipton.product("TRK2"), candidate("500000"), basic_applicant, "long_let", stated("2700"), band_uncertain=True)
+    cover = next(c for c in e.checks if c.name == "rental cover")
+    assert cover.passed and cover.conditional
+    assert e.eligible and e.conditional
+    assert e.required_rent_monthly_higher == Decimal("2918.13")
+    assert "CONDITIONAL" in cover.detail and "145%" in cover.detail
+
+
+def test_clearing_both_ratios_is_not_conditional(skipton, basic_applicant):
+    e = assess(skipton, skipton.product("TRK2"), candidate("500000"), basic_applicant, "long_let", stated("3000"), band_uncertain=True)
+    cover = next(c for c in e.checks if c.name == "rental cover")
+    assert cover.passed and not cover.conditional
+    assert e.eligible and not e.conditional
+    assert "also clears" in cover.detail
+
+
+def test_failing_the_lower_ratio_is_a_failure_not_a_conditional_pass(skipton, basic_applicant):
+    e = assess(skipton, skipton.product("TRK2"), candidate("500000"), basic_applicant, "long_let", stated("1100"), band_uncertain=True)
+    cover = next(c for c in e.checks if c.name == "rental cover")
+    assert not cover.passed and not cover.conditional
+    assert not e.eligible and not e.conditional
+    assert "and also fails" in cover.detail
+
+
+def test_a_lender_whose_ratio_does_not_vary_by_band_is_never_conditional(leeds, basic_applicant):
+    # Leeds applies 145% whatever the band, so a possible band change establishes nothing.
+    e = assess(leeds, leeds.product("HL2-75"), candidate("285000"), basic_applicant, "short_let", stated("3000"), band_uncertain=True)
+    cover = next(c for c in e.checks if c.name == "rental cover")
+    assert cover.passed and not cover.conditional
+    assert e.required_rent_monthly_higher is None
+    assert not e.conditional
+
+
+def test_a_settled_band_leaves_the_single_ratio_test_alone(skipton, basic_applicant):
+    e = assess(skipton, skipton.product("TRK2"), candidate("500000"), basic_applicant, "long_let", stated("2700"))
+    cover = next(c for c in e.checks if c.name == "rental cover")
+    assert cover.passed and not cover.conditional
+    assert e.required_rent_monthly_higher is None
+    assert "145%" not in cover.detail
+
+
+def test_a_portfolio_landlord_is_already_on_the_portfolio_ratio(skipton):
+    pl = Applicant(tax_band="basic", gross_earned_income=stated("45000"), portfolio_landlord=True)
+    e = assess(skipton, skipton.product("TRK2"), candidate("500000"), pl, "long_let", stated("3000"), band_uncertain=True)
+    cover = next(c for c in e.checks if c.name == "rental cover")
+    assert not cover.conditional and e.required_rent_monthly_higher is None

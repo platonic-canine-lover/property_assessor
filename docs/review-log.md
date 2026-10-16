@@ -55,3 +55,37 @@ investment calculator. The README now says exactly that.
 Passing tests prove the code behaves as tested. They do not establish that
 the lending criteria, tax bands or council rules are still current, or that
 a lender will approve a real application.
+
+## Review 3 → commit 5
+
+Reviewer's verdict on the previous state: 8.5/10, publishable. Two findings
+and one presentation point, all three reproduced here against `0b227bd`
+before anything was changed.
+
+| Finding | Fix |
+| --- | --- |
+| The report warned that rental profit could push a basic-rate applicant into the higher band, while `lenders.py` ran the cover test at the configured band only. A marginal property could therefore pass on the 125% test and carry a warning that the 145% test might be the one that applies. | The year is now computed before eligibility, so the cover test can see the projected profit. Where the profit crosses the threshold **and** the lender's ratios differ by band, the rent is tested against both: clearing both is a pass, clearing only the lower one is reported as `cond` and the verdict line reads `ELIGIBLE, CONDITIONAL`, and the detail names both figures and says to ask the lender. A fail against the lower ratio stays a fail. |
+| The sensitivity row labelled "operating costs +20%" scaled management, cleaning, utilities, maintenance and insurance — not the platform fee, council tax or business rates, or the estate charge. | Renamed to "variable costs", and the report prints what is varied and what is held underneath the grid. The scope of the calculation is unchanged: scaling a statutory council-tax charge or a contractual platform percentage by 20% models nothing, and the rates regime is decided in `rates.py` from evidence. A test asserts line by line that the five named lines move and the three named lines do not. |
+| Break-even occupancy is pre-tax while the headline cash-on-cash is after tax, with no label to say so. | The report says "pre-tax break-even occupancy". A test asserts the bare label no longer appears anywhere in the output. |
+
+Two corrections to the review, both verified in the code:
+
+- The optimistic case it describes **does not occur in the committed worked
+  example**, and could not. The only lender that accepts short lets (Leeds)
+  publishes 145% for both bands, so its holiday-let cover test never depended
+  on the band; and every Skipton long-let case in the example fails the 125%
+  test already, and a stricter ratio cannot turn a fail into a pass. The
+  defect was real but latent — it needed a marginal long let to surface — so
+  the fix is carried by unit tests rather than by a change in the example.
+  £375,000 at 6.44% stress requires £2,516/month at 125% and £2,918 at 145%:
+  a rent of £2,700 is the conditional case, and that is the test.
+- The warning had the opposite fault as well, which the review did not name:
+  it fired on every Leeds row, where the band cannot change the cover test,
+  and it quoted "the 145% cover test" as a constant rather than reading the
+  lender's own figures. Income tax is computed progressively from the bands
+  and never from `applicant.tax_band`, so the band flag drives nothing but
+  the lender's ratio. Both wordings now come from the lender's config.
+
+One recommendation accepted without change: the scope is frozen here. 61
+tests, `ruff`, `ruff format` and `mypy --strict` clean, and the worked
+example regenerated from the committed snapshots.

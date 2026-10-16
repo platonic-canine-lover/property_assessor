@@ -14,7 +14,11 @@ The tests, in order:
   6. rental cover: rent must be at least ICR% of the interest at the stress
      rate, where the stress rate is max(product rate + uplift, floor) and
      the uplift depends on the product's term
-Every failing test is reported with the number it failed by.
+Every failing test is reported with the number it failed by. Test 6 can also
+come back CONDITIONAL: where the rental profit may push a basic-rate applicant
+into the higher band and the lender's cover ratios differ by band, the rent is
+tested against both ratios, and a pass on the lower one alone is reported as
+conditional rather than as a pass.
 """
 
 from __future__ import annotations
@@ -96,6 +100,9 @@ class Check(BaseModel):
     name: str
     passed: bool
     detail: str
+    conditional: bool = Field(
+        default=False, description="Passed on one reading of the criteria but not on another; which applies is not established"
+    )
 
 
 class Eligibility(BaseModel):
@@ -107,12 +114,20 @@ class Eligibility(BaseModel):
     ltv: Decimal
     stress_rate: Decimal
     required_rent_monthly: Decimal
+    required_rent_monthly_higher: Decimal | None = Field(
+        default=None, description="Required rent if the lender applies its higher-band ratio; None when the band cannot change the test"
+    )
     available_rent_monthly: Decimal | None
     provenance: Provenance
 
     @property
     def eligible(self) -> bool:
         return all(c.passed for c in self.checks)
+
+    @property
+    def conditional(self) -> bool:
+        """Passes every test, but at least one test's outcome depends on a reading not established."""
+        return self.eligible and any(c.conditional for c in self.checks)
 
     @property
     def failures(self) -> list[Check]:
@@ -129,11 +144,19 @@ def stress_rate(lender: Lender, product: Product) -> Decimal:
     return max(product.rate.value + uplift, lender.stress.floor)
 
 
-def required_rent_monthly(lender: Lender, product: Product, applicant: Applicant, loan: Decimal) -> tuple[Decimal, Decimal]:
+def icr_for(lender: Lender, applicant: Applicant, band: TaxBand | None = None) -> Decimal:
+    """The cover ratio this lender applies. A portfolio landlord gets the portfolio ratio where one is published."""
+    if applicant.portfolio_landlord and lender.icr_portfolio:
+        return lender.icr_portfolio
+    return lender.icr[band or applicant.tax_band]
+
+
+def required_rent_monthly(
+    lender: Lender, product: Product, applicant: Applicant, loan: Decimal, band: TaxBand | None = None
+) -> tuple[Decimal, Decimal]:
     rate = stress_rate(lender, product)
-    icr = lender.icr_portfolio if applicant.portfolio_landlord and lender.icr_portfolio else lender.icr[applicant.tax_band]
     annual_interest = loan * rate
-    return money(annual_interest * icr / 12), rate
+    return money(annual_interest * icr_for(lender, applicant, band) / 12), rate
 
 
 def assess(
@@ -143,8 +166,15 @@ def assess(
     applicant: Applicant,
     strategy: Strategy,
     available_rent_monthly: Sourced[Decimal] | None,
+    band_uncertain: bool = False,
 ) -> Eligibility:
-    """Run every criterion and report each one, pass or fail."""
+    """Run every criterion and report each one, pass or fail.
+
+    band_uncertain: the rental profit may push a basic-rate applicant over the
+    higher-rate threshold, so the band the lender will apply to its cover test
+    is not established. Where the lender's ratios differ by band, the test is
+    run at both and a pass on the lower one only is reported as conditional.
+    """
     price = candidate.asking_price.value
     loan = money(price * (1 - applicant.deposit_fraction))
     ltv = (loan / price).quantize(Decimal("0.0001"))
@@ -187,6 +217,15 @@ def assess(
     )
 
     required, rate = required_rent_monthly(lender, product, applicant, loan)
+    icr = icr_for(lender, applicant)
+    # Which band the lender applies is only in doubt when the profit may cross the
+    # threshold AND this lender's ratios actually differ by band. Leeds applies
+    # 145% to both bands, so there is nothing to establish and nothing to warn about.
+    icr_higher = icr_for(lender, applicant, "higher") if band_uncertain and applicant.tax_band == "basic" else None
+    required_higher: Decimal | None = None
+    if icr_higher is not None and icr_higher != icr:
+        required_higher, _ = required_rent_monthly(lender, product, applicant, loan, "higher")
+
     if available_rent_monthly is None:
         checks.append(
             Check(
@@ -196,19 +235,35 @@ def assess(
             )
         )
         available = None
-    else:
+    elif required_higher is not None and required <= available_rent_monthly.value < required_higher:
         available = available_rent_monthly.value
-        gap = money(available - required)
         checks.append(
             Check(
                 name="rental cover",
-                passed=available >= required,
+                passed=True,
+                conditional=True,
                 detail=(
-                    f"rent £{available:,.0f}/month vs required £{required:,.0f} "
-                    f"({'passes by' if gap >= 0 else 'FAILS by'} £{abs(gap):,.0f}; stress {rate:.2%} × ICR {lender.icr_portfolio if applicant.portfolio_landlord and lender.icr_portfolio else lender.icr[applicant.tax_band]:.0%})"
+                    f"rent £{available:,.0f}/month clears the {icr:.0%} test (£{required:,.0f}) but NOT the "
+                    f"{icr_higher:.0%} one (£{required_higher:,.0f}); the rental profit may put this applicant in the "
+                    f"higher band, and which test {lender.name} then applies is not established from "
+                    f"{lender.criteria_url} — CONDITIONAL, ask the lender"
                 ),
             )
         )
+    else:
+        available = available_rent_monthly.value
+        gap = money(available - required)
+        detail = (
+            f"rent £{available:,.0f}/month vs required £{required:,.0f} "
+            f"({'passes by' if gap >= 0 else 'FAILS by'} £{abs(gap):,.0f}; stress {rate:.2%} × ICR {icr:.0%})"
+        )
+        if required_higher is not None:
+            clears = available >= required_higher
+            detail += (
+                f"; {'also clears' if clears else 'and also fails'} the {icr_higher:.0%} test "
+                f"(£{required_higher:,.0f}) that may apply if the profit crosses the higher-rate threshold"
+            )
+        checks.append(Check(name="rental cover", passed=available >= required, detail=detail))
 
     return Eligibility(
         lender=lender.name,
@@ -219,6 +274,7 @@ def assess(
         ltv=ltv,
         stress_rate=rate,
         required_rent_monthly=required,
+        required_rent_monthly_higher=required_higher,
         available_rent_monthly=available,
         provenance=Provenance.of(
             asking_price=candidate.asking_price,

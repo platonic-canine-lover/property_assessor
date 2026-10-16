@@ -12,8 +12,9 @@ from property_assessor.comparables import Sale, SalesSet, compare, locality_scor
 from property_assessor.config import MarketFigure, load_area_rules, load_costs, load_tax
 from property_assessor.models import Applicant, Candidate
 from property_assessor.rates import year_one
+from property_assessor.report import render
 from property_assessor.returns import short_let_year
-from property_assessor.sensitivity import short_let_sensitivity
+from property_assessor.sensitivity import _scaled_costs, short_let_sensitivity
 from property_assessor.sourced import Sourced
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -199,7 +200,7 @@ class TestSensitivity:
         assert by[("nightly rate", "+15%")] > 0 > by[("nightly rate", "-15%")]
         assert by[("mortgage rate", "+1.00% points (7.50%)")] < 0
         assert by[("mortgage rate", "+2.00% points (8.50%)")] < by[("mortgage rate", "+1.00% points (7.50%)")]
-        assert by[("operating costs", "+20%")] < 0
+        assert by[("variable costs", "+20%")] < 0
         # a 1-point rate rise on £213,750 interest-only costs £2,137.50 pre-tax; after the 20% credit about £1,710
         assert Decimal("-2200") < by[("mortgage rate", "+1.00% points (7.50%)")] < Decimal("-1600")
 
@@ -248,3 +249,78 @@ class TestHeadlineArithmetic:
         assert a.year.operating_costs == op
         assert a.year.pre_tax_cash_flow == gross - op - a.year.mortgage_interest
         assert comparables(inputs)["st-eval-semi"].verdict == "within range"
+
+
+class TestReview3:
+    """The cost sensitivity's label, the break-even label, and the band warning."""
+
+    def _inputs(self) -> Inputs:
+        return Inputs.load(
+            CONFIG,
+            ROOT / "data/candidates.yaml",
+            ROOT / "data/applicant.yaml",
+            ROOT / "data/snapshots/cornwall-2026-10.yaml",
+            "cornwall",
+            today=TODAY,
+        )
+
+    def test_the_cost_row_scales_the_lines_it_names_and_no_others(self):
+        tax, costs, rules = (
+            load_tax(CONFIG / "tax.yaml"),
+            load_costs(CONFIG / "costs.yaml"),
+            load_area_rules(CONFIG / "rules/cornwall.yaml"),
+        )
+        adr = MarketFigure(area="Cornwall", granularity="county", value=s("242", "published"))
+        occ = MarketFigure(area="Cornwall", granularity="county", value=s("0.57", "published"))
+        buyer = Applicant(tax_band="basic", gross_earned_income=s("45000"))
+        c = cand(estate_charge_monthly=s("40"))
+        decision = year_one(c, rules, 300, "assumption")
+
+        def amount(cfg, prefix: str) -> Decimal:
+            y = short_let_year(c, buyer, adr, occ, Decimal("213750"), Decimal("0.065"), tax, cfg, rules, decision)
+            return next(li.amount for li in y.operating_lines if li.label.startswith(prefix))
+
+        up = _scaled_costs(costs, Decimal("1.20"))
+        # The lines the row says it varies: 20% higher, give or take rounding on the fraction lines.
+        for prefix in ("management", "cleaning", "utilities", "maintenance", "holiday-let insurance"):
+            assert abs(amount(up, prefix) - amount(costs, prefix) * Decimal("1.2")) < Decimal("1"), prefix
+        # The lines it says it holds: untouched, so "+20%" must not be read as all operating costs.
+        for prefix in ("platform fee", "council tax band", "estate charge"):
+            assert amount(up, prefix) == amount(costs, prefix), prefix
+
+    def test_the_sensitivity_reports_which_costs_it_varies(self):
+        tax, costs, rules = (
+            load_tax(CONFIG / "tax.yaml"),
+            load_costs(CONFIG / "costs.yaml"),
+            load_area_rules(CONFIG / "rules/cornwall.yaml"),
+        )
+        adr = MarketFigure(area="Cornwall", granularity="county", value=s("242", "published"))
+        occ = MarketFigure(area="Cornwall", granularity="county", value=s("0.57", "published"))
+        buyer = Applicant(tax_band="basic", gross_earned_income=s("45000"))
+        sens = short_let_sensitivity(
+            cand(), buyer, adr, occ, Decimal("213750"), Decimal("0.065"), tax, costs, rules, year_one(cand(), rules, 300, "assumption")
+        )
+        assert [r.input for r in sens.rows].count("variable costs") == 1
+        assert "operating costs" not in [r.input for r in sens.rows]
+        assert "management" in sens.varied_costs and "council tax / business rates" in sens.held_costs
+
+    def test_break_even_is_labelled_pre_tax_because_the_headline_is_after_tax(self):
+        out = render(run(self._inputs()), comparables(self._inputs()))
+        assert "pre-tax break-even occupancy" in out
+        # the label must not appear bare next to the after-tax cash-on-cash figure
+        assert ", break-even occupancy" not in out
+        assert "variable costs = management" in out
+
+    def test_the_band_warning_claims_a_lender_consequence_only_where_one_exists(self):
+        results = [r for r in run(self._inputs()) if r.assessment is not None]
+        leeds = [r for r in results if r.lender.id == "leeds"]
+        skipton = [r for r in results if r.lender.id == "skipton"]
+        assert leeds and skipton
+        # Leeds applies 145% to both bands: the crossing changes nothing on its test
+        for r in leeds:
+            crossing = [w for w in r.assessment.warnings if "higher-rate threshold" in w]
+            assert crossing and "applies the same cover ratio to both bands" in crossing[0]
+        # Skipton's ratio does change, so the cover test is tested against both
+        for r in skipton:
+            crossing = [w for w in r.assessment.warnings if "higher-rate threshold" in w]
+            assert crossing and "applies a higher cover ratio" in crossing[0]

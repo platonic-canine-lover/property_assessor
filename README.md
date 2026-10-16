@@ -129,7 +129,10 @@ year. So the model treats the three conditions separately (`rates.py`):
 The break-even occupancy is computed per regime, with the regime held
 fixed, because within one regime cash flow is monotone in occupancy and the
 bisection is sound; across the threshold it is not, and the earlier version
-of this tool got that wrong (see `docs/review-log.md`).
+of this tool got that wrong (see `docs/review-log.md`). It is the occupancy
+at which **pre-tax** cash flow reaches zero, and the report labels it so:
+the headline cash-on-cash beside it is after tax, and the two are not
+comparable.
 
 ## Tax
 
@@ -140,8 +143,12 @@ part above. Mortgage interest is not deductible; a 20% credit applies,
 limited to the lower of the interest, the property profit and the tax due.
 Two consequences the report shows rather than hides: a property with a cash
 loss after interest can still owe tax, and a basic-rate earner can be pushed
-into the higher band by the rental profit itself (the report warns, since
-the lender may then apply the 145% cover test). The furnished-holiday-let
+into the higher band by the rental profit itself. The second one reaches the
+lender's cover test, so where it does the rent is tested against both of the
+lender's ratios and a pass on the lower one alone is reported as
+**conditional**, not as a pass. Where a lender publishes one ratio for both
+bands — Leeds does — the crossing changes nothing on its test, and the report
+says that instead of implying a risk that is not there. The furnished-holiday-let
 regime ended in April 2025, so short-let income is treated the same way.
 
 ## What is published and what is assumed
@@ -187,7 +194,12 @@ Year-1 cash flow on the eligible case sits near zero, which is where a point
 estimate is least useful, so every short-let assessment carries a
 one-at-a-time sensitivity grid: after-tax cash flow with occupancy moved by
 ±10 and -15 points, nightly rate by ±15%, mortgage rate by +1 and +2 points,
-and operating costs by +20%, everything else held. It says which input the
+and the variable operating costs by +20%, everything else held. That last row
+moves the five lines that are assumptions about how the property is run
+(management, cleaning, utilities, maintenance, insurance) and holds the
+platform fee, council tax or business rates, and the estate charge; the report
+prints which are which, because "operating costs +20%" would claim more than
+the figure does. It says which input the
 answer depends on; it is not a distribution and makes no claim about how
 likely each value is. On the St Eval short let the mortgage rate and
 occupancy dominate, each worth roughly £3,000 to £4,000 a year per step.
@@ -236,7 +248,7 @@ src/property_assessor/
   rates.py           the three business-rates conditions, year 1 vs steady state
   comparables.py     weighted comparable sales, verdict on the asking price
   sensitivity.py     one-at-a-time sensitivity of a short-let year
-tests/               51 tests: scope enforcement, malformed inputs, locality edge cases, extremes, sensitivity, an independent recomputation of the headline example, comparables weighting and verdicts, lender maths, SDLT, year arithmetic, the three rates conditions, tax banding and the Section 24 outcome, break-even per regime, end to end
+tests/               61 tests: scope enforcement, malformed inputs, locality edge cases, extremes, sensitivity, an independent recomputation of the headline example, comparables weighting and verdicts, lender maths including the conditional cover test, SDLT, year arithmetic, the three rates conditions, tax banding and the Section 24 outcome, break-even per regime, end to end
 docs/example-output.txt
 ```
 

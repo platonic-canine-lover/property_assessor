@@ -23,7 +23,7 @@ Little Carharrack, Redruth (2-bed bungalow, 2024)  (TR16, Redruth)  https://www.
       ok   minimum property value: price £500,000 vs minimum £75,000
       FAIL LTV: LTV 75.0% vs maximum 70% (new build; incentive not ruled out, so the lower cap applies until confirmed)
       ok   minimum income: earned income £45,000 vs minimum £20,000
-      FAIL rental cover: rent £880/month vs required £2,516 (FAILS by £1,636; stress 6.44% × ICR 125%)
+      FAIL rental cover: rent £880/month vs required £2,516 (FAILS by £1,636; stress 6.44% × ICR 125%); and also fails the 145% test (£2,918) that may apply if the profit crosses the higher-rate threshold
     cash in £168,395: deposit (25%) £125,000 [stated]; SDLT incl. additional-property surcharge £40,000 [published]; product fee £995 [stated]; legal fees £1,800 [assumption]; survey £600 [assumption]; mortgage valuation £0 [stated]
     year 1 income £9,748: rent £880/month (local_authority figure, 2-bed), less 4 void weeks [published]
     operating £2,355: management 10% £975 [assumption]; maintenance 8% £780 [assumption]; landlord insurance £350 [assumption]; safety certificates £250 [assumption]
@@ -32,7 +32,7 @@ Little Carharrack, Redruth (2-bed bungalow, 2024)  (TR16, Redruth)  https://www.
     basis: assumption (weakest input); inputs: rent=880 [published 2026-08-01]; management=0.10 [assumption]; voids=4 [assumption]
     ! private water supply or drainage: lender valuation and holiday-let insurance may ask questions
     ! NOT ELIGIBLE with this lender and product; returns shown for information only
-    ! earned income plus rental profit (£52,393) crosses the higher-rate threshold (£50,270); the lender may treat you as a higher-rate taxpayer and apply the 145% cover test
+    ! earned income plus rental profit (£52,393) crosses the higher-rate threshold (£50,270); Skipton Building Society applies a higher cover ratio to higher-rate taxpayers, so the rental cover result above is tested against both ratios
 
   LONG LET   Skipton Building Society  R2606 Fixed, £1,995 fee (term unconfirmed)
     loan £375,000 at 5.44% (published), LTV 75%, stress 7.44%
@@ -41,7 +41,7 @@ Little Carharrack, Redruth (2-bed bungalow, 2024)  (TR16, Redruth)  https://www.
       ok   minimum property value: price £500,000 vs minimum £75,000
       FAIL LTV: LTV 75.0% vs maximum 70% (new build; incentive not ruled out, so the lower cap applies until confirmed)
       ok   minimum income: earned income £45,000 vs minimum £20,000
-      FAIL rental cover: rent £880/month vs required £2,906 (FAILS by £2,026; stress 7.44% × ICR 125%)
+      FAIL rental cover: rent £880/month vs required £2,906 (FAILS by £2,026; stress 7.44% × ICR 125%); and also fails the 145% test (£3,371) that may apply if the profit crosses the higher-rate threshold
     cash in £169,395: deposit (25%) £125,000 [stated]; SDLT incl. additional-property surcharge £40,000 [published]; product fee £1,995 [published]; legal fees £1,800 [assumption]; survey £600 [assumption]; mortgage valuation £0 [stated]
     year 1 income £9,748: rent £880/month (local_authority figure, 2-bed), less 4 void weeks [published]
     operating £2,355: management 10% £975 [assumption]; maintenance 8% £780 [assumption]; landlord insurance £350 [assumption]; safety certificates £250 [assumption]
@@ -50,7 +50,7 @@ Little Carharrack, Redruth (2-bed bungalow, 2024)  (TR16, Redruth)  https://www.
     basis: assumption (weakest input); inputs: rent=880 [published 2026-08-01]; management=0.10 [assumption]; voids=4 [assumption]
     ! private water supply or drainage: lender valuation and holiday-let insurance may ask questions
     ! NOT ELIGIBLE with this lender and product; returns shown for information only
-    ! earned income plus rental profit (£52,393) crosses the higher-rate threshold (£50,270); the lender may treat you as a higher-rate taxpayer and apply the 145% cover test
+    ! earned income plus rental profit (£52,393) crosses the higher-rate threshold (£50,270); Skipton Building Society applies a higher cover ratio to higher-rate taxpayers, so the rental cover result above is tested against both ratios
 
   LONG LET   Skipton Building Society  R2605 Fixed, £995 fee (term unconfirmed)
     loan £375,000 at 5.55% (published), LTV 75%, stress 7.55%
@@ -59,7 +59,7 @@ Little Carharrack, Redruth (2-bed bungalow, 2024)  (TR16, Redruth)  https://www.
       ok   minimum property value: price £500,000 vs minimum £75,000
       FAIL LTV: LTV 75.0% vs maximum 70% (new build; incentive not ruled out, so the lower cap applies until confirmed)
       ok   minimum income: earned income £45,000 vs minimum £20,000
-      FAIL rental cover: rent £880/month vs required £2,949 (FAILS by £2,069; stress 7.55% × ICR 125%)
+      FAIL rental cover: rent £880/month vs required £2,949 (FAILS by £2,069; stress 7.55% × ICR 125%); and also fails the 145% test (£3,421) that may apply if the profit crosses the higher-rate threshold
     cash in £168,395: deposit (25%) £125,000 [stated]; SDLT incl. additional-property surcharge £40,000 [published]; product fee £995 [published]; legal fees £1,800 [assumption]; survey £600 [assumption]; mortgage valuation £0 [stated]
     year 1 income £9,748: rent £880/month (local_authority figure, 2-bed), less 4 void weeks [published]
     operating £2,355: management 10% £975 [assumption]; maintenance 8% £780 [assumption]; landlord insurance £350 [assumption]; safety certificates £250 [assumption]
@@ -68,7 +68,7 @@ Little Carharrack, Redruth (2-bed bungalow, 2024)  (TR16, Redruth)  https://www.
     basis: assumption (weakest input); inputs: rent=880 [published 2026-08-01]; management=0.10 [assumption]; voids=4 [assumption]
     ! private water supply or drainage: lender valuation and holiday-let insurance may ask questions
     ! NOT ELIGIBLE with this lender and product; returns shown for information only
-    ! earned income plus rental profit (£52,393) crosses the higher-rate threshold (£50,270); the lender may treat you as a higher-rate taxpayer and apply the 145% cover test
+    ! earned income plus rental profit (£52,393) crosses the higher-rate threshold (£50,270); Skipton Building Society applies a higher cover ratio to higher-rate taxpayers, so the rental cover result above is tested against both ratios
 
   LONG LET   Skipton Building Society  R2604 Fixed, fee-free (term unconfirmed)
     loan £375,000 at 5.86% (published), LTV 75%, stress 7.86%
@@ -77,7 +77,7 @@ Little Carharrack, Redruth (2-bed bungalow, 2024)  (TR16, Redruth)  https://www.
       ok   minimum property value: price £500,000 vs minimum £75,000
       FAIL LTV: LTV 75.0% vs maximum 70% (new build; incentive not ruled out, so the lower cap applies until confirmed)
       ok   minimum income: earned income £45,000 vs minimum £20,000
-      FAIL rental cover: rent £880/month vs required £3,070 (FAILS by £2,190; stress 7.86% × ICR 125%)
+      FAIL rental cover: rent £880/month vs required £3,070 (FAILS by £2,190; stress 7.86% × ICR 125%); and also fails the 145% test (£3,562) that may apply if the profit crosses the higher-rate threshold
     cash in £167,400: deposit (25%) £125,000 [stated]; SDLT incl. additional-property surcharge £40,000 [published]; product fee £0 [published]; legal fees £1,800 [assumption]; survey £600 [assumption]; mortgage valuation £0 [stated]
     year 1 income £9,748: rent £880/month (local_authority figure, 2-bed), less 4 void weeks [published]
     operating £2,355: management 10% £975 [assumption]; maintenance 8% £780 [assumption]; landlord insurance £350 [assumption]; safety certificates £250 [assumption]
@@ -86,7 +86,7 @@ Little Carharrack, Redruth (2-bed bungalow, 2024)  (TR16, Redruth)  https://www.
     basis: assumption (weakest input); inputs: rent=880 [published 2026-08-01]; management=0.10 [assumption]; voids=4 [assumption]
     ! private water supply or drainage: lender valuation and holiday-let insurance may ask questions
     ! NOT ELIGIBLE with this lender and product; returns shown for information only
-    ! earned income plus rental profit (£52,393) crosses the higher-rate threshold (£50,270); the lender may treat you as a higher-rate taxpayer and apply the 145% cover test
+    ! earned income plus rental profit (£52,393) crosses the higher-rate threshold (£50,270); Skipton Building Society applies a higher cover ratio to higher-rate taxpayers, so the rental cover result above is tested against both ratios
 
   SHORT LET  Leeds Building Society (holiday let)  HL2-75 Holiday Let 2 Year Fixed to 31/01/2029, 75% LTV
     loan £375,000 at 6.50% (published), LTV 75%, stress 8.50%
@@ -100,7 +100,7 @@ Little Carharrack, Redruth (2-bed bungalow, 2024)  (TR16, Redruth)  https://www.
     year 1 income £38,729: ADR $242 ≈ £186 × 208 nights (57% occupancy, county figure) [published]
     operating £23,532: management 18% £6,971 [assumption]; platform fee 3% £1,162 [assumption]; cleaning £80 × 52 stays £4,160 [assumption]; utilities (owner pays) £2,160 [assumption]; maintenance 10% £3,873 [assumption]; holiday-let insurance £600 [assumption]; council tax band C with 100% second-home premium £4,606 [published]
     mortgage interest £24,375  →  pre-tax -£9,178, tax £1,985, after-tax -£11,163
-    YEAR 1  gross yield 7.8%  net yield 3.0%  cash-on-cash -6.2%, break-even occupancy 80.2%
+    YEAR 1  gross yield 7.8%  net yield 3.0%  cash-on-cash -6.2%, pre-tax break-even occupancy 80.2%
       rates regime: council tax premium (no evidence for: available nights, last 12 months; let nights, last 12 months)
         unknown  available nights, last 12 months: no evidence vs 140 required [no evidence]
         met      available nights, next 12 months (owner's plan): 300 vs 140 required [assumption]
@@ -114,9 +114,10 @@ Little Carharrack, Redruth (2-bed bungalow, 2024)  (TR16, Redruth)  https://www.
       nightly rate     +15%                       →   -£7,957  (+3,207)
       mortgage rate    +1.00% points (7.50%)      →  -£14,913  (-3,750)
       mortgage rate    +2.00% points (8.50%)      →  -£18,663  (-7,500)
-      operating costs  +20%                       →  -£14,006  (-2,842)
+      variable costs   +20%                       →  -£14,006  (-2,842)
+      variable costs = management, cleaning, utilities, maintenance, insurance; held: platform fee, council tax / business rates, estate charge
     STEADY STATE: operating £18,926 → pre-tax -£4,572, tax £2,907, after-tax -£7,478
-    STEADY STATE  gross yield 7.8%  net yield 4.0%  cash-on-cash -4.2%, break-even occupancy 68.6%
+    STEADY STATE  gross yield 7.8%  net yield 4.0%  cash-on-cash -4.2%, pre-tax break-even occupancy 68.6%
       rates regime: business rates (would qualify after a year at 208 let nights, if the plan holds)
         met      available nights, last 12 months (owner's plan, once a year has passed): 300 vs 140 required [assumption]
         met      available nights, next 12 months (owner's plan): 300 vs 140 required [assumption]
@@ -125,7 +126,7 @@ Little Carharrack, Redruth (2-bed bungalow, 2024)  (TR16, Redruth)  https://www.
     ! listing does not state whether holiday-let use is permitted; check the title and planning history
     ! private water supply or drainage: lender valuation and holiday-let insurance may ask questions
     ! NOT ELIGIBLE with this lender and product; returns shown for information only
-    ! earned income plus rental profit (£60,197) crosses the higher-rate threshold (£50,270); the lender may treat you as a higher-rate taxpayer and apply the 145% cover test
+    ! earned income plus rental profit (£60,197) crosses the higher-rate threshold (£50,270); the income tax above is computed through the bands either way, and Leeds Building Society (holiday let) applies the same cover ratio to both bands, so its test does not change
 
   SHORT LET  Leeds Building Society (holiday let)  HL5-75 Holiday Let 5 Year Fixed to 31/01/2032, 75% LTV
     loan £375,000 at 6.19% (published), LTV 75%, stress 7.19%
@@ -139,7 +140,7 @@ Little Carharrack, Redruth (2-bed bungalow, 2024)  (TR16, Redruth)  https://www.
     year 1 income £38,729: ADR $242 ≈ £186 × 208 nights (57% occupancy, county figure) [published]
     operating £23,532: management 18% £6,971 [assumption]; platform fee 3% £1,162 [assumption]; cleaning £80 × 52 stays £4,160 [assumption]; utilities (owner pays) £2,160 [assumption]; maintenance 10% £3,873 [assumption]; holiday-let insurance £600 [assumption]; council tax band C with 100% second-home premium £4,606 [published]
     mortgage interest £23,212  →  pre-tax -£8,015, tax £1,985, after-tax -£10,001
-    YEAR 1  gross yield 7.8%  net yield 3.0%  cash-on-cash -5.6%, break-even occupancy 77.2%
+    YEAR 1  gross yield 7.8%  net yield 3.0%  cash-on-cash -5.6%, pre-tax break-even occupancy 77.2%
       rates regime: council tax premium (no evidence for: available nights, last 12 months; let nights, last 12 months)
         unknown  available nights, last 12 months: no evidence vs 140 required [no evidence]
         met      available nights, next 12 months (owner's plan): 300 vs 140 required [assumption]
@@ -153,9 +154,10 @@ Little Carharrack, Redruth (2-bed bungalow, 2024)  (TR16, Redruth)  https://www.
       nightly rate     +15%                       →   -£6,794  (+3,207)
       mortgage rate    +1.00% points (7.19%)      →  -£13,751  (-3,750)
       mortgage rate    +2.00% points (8.19%)      →  -£17,501  (-7,500)
-      operating costs  +20%                       →  -£12,843  (-2,842)
+      variable costs   +20%                       →  -£12,843  (-2,842)
+      variable costs = management, cleaning, utilities, maintenance, insurance; held: platform fee, council tax / business rates, estate charge
     STEADY STATE: operating £18,926 → pre-tax -£3,409, tax £2,907, after-tax -£6,316
-    STEADY STATE  gross yield 7.8%  net yield 4.0%  cash-on-cash -3.5%, break-even occupancy 65.6%
+    STEADY STATE  gross yield 7.8%  net yield 4.0%  cash-on-cash -3.5%, pre-tax break-even occupancy 65.6%
       rates regime: business rates (would qualify after a year at 208 let nights, if the plan holds)
         met      available nights, last 12 months (owner's plan, once a year has passed): 300 vs 140 required [assumption]
         met      available nights, next 12 months (owner's plan): 300 vs 140 required [assumption]
@@ -164,7 +166,7 @@ Little Carharrack, Redruth (2-bed bungalow, 2024)  (TR16, Redruth)  https://www.
     ! listing does not state whether holiday-let use is permitted; check the title and planning history
     ! private water supply or drainage: lender valuation and holiday-let insurance may ask questions
     ! NOT ELIGIBLE with this lender and product; returns shown for information only
-    ! earned income plus rental profit (£60,197) crosses the higher-rate threshold (£50,270); the lender may treat you as a higher-rate taxpayer and apply the 145% cover test
+    ! earned income plus rental profit (£60,197) crosses the higher-rate threshold (£50,270); the income tax above is computed through the bands either way, and Leeds Building Society (holiday let) applies the same cover ratio to both bands, so its test does not change
   SHORT LET  Skipton Building Society  TRK2: excluded, short_let is NOT an accepted use (https://www.skipton-intermediaries.co.uk/criteria/a-z-lending-criteria/a-z-lending-criteria-btl)
   SHORT LET  Skipton Building Society  R2606: excluded, short_let is NOT an accepted use (https://www.skipton-intermediaries.co.uk/criteria/a-z-lending-criteria/a-z-lending-criteria-btl)
   SHORT LET  Skipton Building Society  R2605: excluded, short_let is NOT an accepted use (https://www.skipton-intermediaries.co.uk/criteria/a-z-lending-criteria/a-z-lending-criteria-btl)
@@ -193,7 +195,7 @@ Vildebeest Road, St Eval, Wadebridge (3-bed semi)  (PL27, St Eval)  https://www.
       ok   minimum property value: price £285,000 vs minimum £75,000
       ok   LTV: LTV 75.0% vs maximum 75%
       ok   minimum income: earned income £45,000 vs minimum £20,000
-      FAIL rental cover: rent £1,077/month vs required £1,434 (FAILS by £357; stress 6.44% × ICR 125%)
+      FAIL rental cover: rent £1,077/month vs required £1,434 (FAILS by £357; stress 6.44% × ICR 125%); and also fails the 145% test (£1,663) that may apply if the profit crosses the higher-rate threshold
     cash in £93,145: deposit (25%) £71,250 [stated]; SDLT incl. additional-property surcharge £18,500 [published]; product fee £995 [stated]; legal fees £1,800 [assumption]; survey £600 [assumption]; mortgage valuation £0 [stated]
     year 1 income £11,930: rent £1,077/month (local_authority figure, 3-bed), less 4 void weeks [published]
     operating £3,227: management 10% £1,193 [assumption]; maintenance 8% £954 [assumption]; landlord insurance £350 [assumption]; safety certificates £250 [assumption]; estate charge £480 [stated]
@@ -201,7 +203,7 @@ Vildebeest Road, St Eval, Wadebridge (3-bed semi)  (PL27, St Eval)  https://www.
     RETURNS  gross yield 4.2%  net yield 3.0%  cash-on-cash -1.6%
     basis: assumption (weakest input); inputs: rent=1077 [published 2026-08-01]; management=0.10 [assumption]; voids=4 [assumption]
     ! NOT ELIGIBLE with this lender and product; returns shown for information only
-    ! earned income plus rental profit (£53,702) crosses the higher-rate threshold (£50,270); the lender may treat you as a higher-rate taxpayer and apply the 145% cover test
+    ! earned income plus rental profit (£53,702) crosses the higher-rate threshold (£50,270); Skipton Building Society applies a higher cover ratio to higher-rate taxpayers, so the rental cover result above is tested against both ratios
 
   LONG LET   Skipton Building Society  R2606 Fixed, £1,995 fee (term unconfirmed)
     loan £213,750 at 5.44% (published), LTV 75%, stress 7.44%
@@ -210,7 +212,7 @@ Vildebeest Road, St Eval, Wadebridge (3-bed semi)  (PL27, St Eval)  https://www.
       ok   minimum property value: price £285,000 vs minimum £75,000
       ok   LTV: LTV 75.0% vs maximum 75%
       ok   minimum income: earned income £45,000 vs minimum £20,000
-      FAIL rental cover: rent £1,077/month vs required £1,657 (FAILS by £580; stress 7.44% × ICR 125%)
+      FAIL rental cover: rent £1,077/month vs required £1,657 (FAILS by £580; stress 7.44% × ICR 125%); and also fails the 145% test (£1,922) that may apply if the profit crosses the higher-rate threshold
     cash in £94,145: deposit (25%) £71,250 [stated]; SDLT incl. additional-property surcharge £18,500 [published]; product fee £1,995 [published]; legal fees £1,800 [assumption]; survey £600 [assumption]; mortgage valuation £0 [stated]
     year 1 income £11,930: rent £1,077/month (local_authority figure, 3-bed), less 4 void weeks [published]
     operating £3,227: management 10% £1,193 [assumption]; maintenance 8% £954 [assumption]; landlord insurance £350 [assumption]; safety certificates £250 [assumption]; estate charge £480 [stated]
@@ -218,7 +220,7 @@ Vildebeest Road, St Eval, Wadebridge (3-bed semi)  (PL27, St Eval)  https://www.
     RETURNS  gross yield 4.2%  net yield 3.0%  cash-on-cash -3.8%
     basis: assumption (weakest input); inputs: rent=1077 [published 2026-08-01]; management=0.10 [assumption]; voids=4 [assumption]
     ! NOT ELIGIBLE with this lender and product; returns shown for information only
-    ! earned income plus rental profit (£53,702) crosses the higher-rate threshold (£50,270); the lender may treat you as a higher-rate taxpayer and apply the 145% cover test
+    ! earned income plus rental profit (£53,702) crosses the higher-rate threshold (£50,270); Skipton Building Society applies a higher cover ratio to higher-rate taxpayers, so the rental cover result above is tested against both ratios
 
   LONG LET   Skipton Building Society  R2605 Fixed, £995 fee (term unconfirmed)
     loan £213,750 at 5.55% (published), LTV 75%, stress 7.55%
@@ -227,7 +229,7 @@ Vildebeest Road, St Eval, Wadebridge (3-bed semi)  (PL27, St Eval)  https://www.
       ok   minimum property value: price £285,000 vs minimum £75,000
       ok   LTV: LTV 75.0% vs maximum 75%
       ok   minimum income: earned income £45,000 vs minimum £20,000
-      FAIL rental cover: rent £1,077/month vs required £1,681 (FAILS by £604; stress 7.55% × ICR 125%)
+      FAIL rental cover: rent £1,077/month vs required £1,681 (FAILS by £604; stress 7.55% × ICR 125%); and also fails the 145% test (£1,950) that may apply if the profit crosses the higher-rate threshold
     cash in £93,145: deposit (25%) £71,250 [stated]; SDLT incl. additional-property surcharge £18,500 [published]; product fee £995 [published]; legal fees £1,800 [assumption]; survey £600 [assumption]; mortgage valuation £0 [stated]
     year 1 income £11,930: rent £1,077/month (local_authority figure, 3-bed), less 4 void weeks [published]
     operating £3,227: management 10% £1,193 [assumption]; maintenance 8% £954 [assumption]; landlord insurance £350 [assumption]; safety certificates £250 [assumption]; estate charge £480 [stated]
@@ -235,7 +237,7 @@ Vildebeest Road, St Eval, Wadebridge (3-bed semi)  (PL27, St Eval)  https://www.
     RETURNS  gross yield 4.2%  net yield 3.0%  cash-on-cash -4.1%
     basis: assumption (weakest input); inputs: rent=1077 [published 2026-08-01]; management=0.10 [assumption]; voids=4 [assumption]
     ! NOT ELIGIBLE with this lender and product; returns shown for information only
-    ! earned income plus rental profit (£53,702) crosses the higher-rate threshold (£50,270); the lender may treat you as a higher-rate taxpayer and apply the 145% cover test
+    ! earned income plus rental profit (£53,702) crosses the higher-rate threshold (£50,270); Skipton Building Society applies a higher cover ratio to higher-rate taxpayers, so the rental cover result above is tested against both ratios
 
   LONG LET   Skipton Building Society  R2604 Fixed, fee-free (term unconfirmed)
     loan £213,750 at 5.86% (published), LTV 75%, stress 7.86%
@@ -244,7 +246,7 @@ Vildebeest Road, St Eval, Wadebridge (3-bed semi)  (PL27, St Eval)  https://www.
       ok   minimum property value: price £285,000 vs minimum £75,000
       ok   LTV: LTV 75.0% vs maximum 75%
       ok   minimum income: earned income £45,000 vs minimum £20,000
-      FAIL rental cover: rent £1,077/month vs required £1,750 (FAILS by £673; stress 7.86% × ICR 125%)
+      FAIL rental cover: rent £1,077/month vs required £1,750 (FAILS by £673; stress 7.86% × ICR 125%); and also fails the 145% test (£2,030) that may apply if the profit crosses the higher-rate threshold
     cash in £92,150: deposit (25%) £71,250 [stated]; SDLT incl. additional-property surcharge £18,500 [published]; product fee £0 [published]; legal fees £1,800 [assumption]; survey £600 [assumption]; mortgage valuation £0 [stated]
     year 1 income £11,930: rent £1,077/month (local_authority figure, 3-bed), less 4 void weeks [published]
     operating £3,227: management 10% £1,193 [assumption]; maintenance 8% £954 [assumption]; landlord insurance £350 [assumption]; safety certificates £250 [assumption]; estate charge £480 [stated]
@@ -252,7 +254,7 @@ Vildebeest Road, St Eval, Wadebridge (3-bed semi)  (PL27, St Eval)  https://www.
     RETURNS  gross yield 4.2%  net yield 3.0%  cash-on-cash -4.9%
     basis: assumption (weakest input); inputs: rent=1077 [published 2026-08-01]; management=0.10 [assumption]; voids=4 [assumption]
     ! NOT ELIGIBLE with this lender and product; returns shown for information only
-    ! earned income plus rental profit (£53,702) crosses the higher-rate threshold (£50,270); the lender may treat you as a higher-rate taxpayer and apply the 145% cover test
+    ! earned income plus rental profit (£53,702) crosses the higher-rate threshold (£50,270); Skipton Building Society applies a higher cover ratio to higher-rate taxpayers, so the rental cover result above is tested against both ratios
 
   SHORT LET  Leeds Building Society (holiday let)  HL2-75 Holiday Let 2 Year Fixed to 31/01/2029, 75% LTV
     loan £213,750 at 6.50% (published), LTV 75%, stress 8.50%
@@ -266,7 +268,7 @@ Vildebeest Road, St Eval, Wadebridge (3-bed semi)  (PL27, St Eval)  https://www.
     year 1 income £38,729: ADR $242 ≈ £186 × 208 nights (57% occupancy, county figure) [published]
     operating £23,436: management 18% £6,971 [assumption]; platform fee 3% £1,162 [assumption]; cleaning £80 × 52 stays £4,160 [assumption]; utilities (owner pays) £2,160 [assumption]; maintenance 10% £3,873 [assumption]; holiday-let insurance £600 [assumption]; council tax band B with 100% second-home premium £4,030 [published]; estate charge £480 [stated]
     mortgage interest £13,894  →  pre-tax £1,399, tax £2,284, after-tax -£885
-    YEAR 1  gross yield 13.6%  net yield 5.4%  cash-on-cash -0.8%, break-even occupancy 53.5%
+    YEAR 1  gross yield 13.6%  net yield 5.4%  cash-on-cash -0.8%, pre-tax break-even occupancy 53.5%
       rates regime: council tax premium (no evidence for: available nights, last 12 months; let nights, last 12 months)
         unknown  available nights, last 12 months: no evidence vs 140 required [no evidence]
         met      available nights, next 12 months (owner's plan): 300 vs 140 required [assumption]
@@ -280,16 +282,17 @@ Vildebeest Road, St Eval, Wadebridge (3-bed semi)  (PL27, St Eval)  https://www.
       nightly rate     +15%                       →    £1,520  (+2,405)
       mortgage rate    +1.00% points (7.50%)      →   -£2,743  (-1,858)
       mortgage rate    +2.00% points (8.50%)      →   -£4,880  (-3,995)
-      operating costs  +20%                       →   -£3,448  (-2,562)
+      variable costs   +20%                       →   -£3,448  (-2,562)
+      variable costs = management, cleaning, utilities, maintenance, insurance; held: platform fee, council tax / business rates, estate charge
     STEADY STATE: operating £19,406 → pre-tax £5,429, tax £3,897, after-tax £1,533
-    STEADY STATE  gross yield 13.6%  net yield 6.8%  cash-on-cash 1.5%, break-even occupancy 43.4%
+    STEADY STATE  gross yield 13.6%  net yield 6.8%  cash-on-cash 1.5%, pre-tax break-even occupancy 43.4%
       rates regime: business rates (would qualify after a year at 208 let nights, if the plan holds)
         met      available nights, last 12 months (owner's plan, once a year has passed): 300 vs 140 required [assumption]
         met      available nights, next 12 months (owner's plan): 300 vs 140 required [assumption]
         met      let nights, last 12 months (projected occupancy, once a year has passed): 208 vs 70 required [published]
     basis: assumption (weakest input); inputs: adr=242 [published 2026-10-13]; occupancy=0.57 [published 2026-10-13]; fx=1.30 [assumption]; management=0.18 [assumption]; cleaning=80 [assumption]
     ! listing does not state whether holiday-let use is permitted; check the title and planning history
-    ! earned income plus rental profit (£60,293) crosses the higher-rate threshold (£50,270); the lender may treat you as a higher-rate taxpayer and apply the 145% cover test
+    ! earned income plus rental profit (£60,293) crosses the higher-rate threshold (£50,270); the income tax above is computed through the bands either way, and Leeds Building Society (holiday let) applies the same cover ratio to both bands, so its test does not change
 
   SHORT LET  Leeds Building Society (holiday let)  HL5-75 Holiday Let 5 Year Fixed to 31/01/2032, 75% LTV
     loan £213,750 at 6.19% (published), LTV 75%, stress 7.19%
@@ -303,7 +306,7 @@ Vildebeest Road, St Eval, Wadebridge (3-bed semi)  (PL27, St Eval)  https://www.
     year 1 income £38,729: ADR $242 ≈ £186 × 208 nights (57% occupancy, county figure) [published]
     operating £23,436: management 18% £6,971 [assumption]; platform fee 3% £1,162 [assumption]; cleaning £80 × 52 stays £4,160 [assumption]; utilities (owner pays) £2,160 [assumption]; maintenance 10% £3,873 [assumption]; holiday-let insurance £600 [assumption]; council tax band B with 100% second-home premium £4,030 [published]; estate charge £480 [stated]
     mortgage interest £13,231  →  pre-tax £2,062, tax £2,417, after-tax -£355
-    YEAR 1  gross yield 13.6%  net yield 5.4%  cash-on-cash -0.3%, break-even occupancy 51.7%
+    YEAR 1  gross yield 13.6%  net yield 5.4%  cash-on-cash -0.3%, pre-tax break-even occupancy 51.7%
       rates regime: council tax premium (no evidence for: available nights, last 12 months; let nights, last 12 months)
         unknown  available nights, last 12 months: no evidence vs 140 required [no evidence]
         met      available nights, next 12 months (owner's plan): 300 vs 140 required [assumption]
@@ -317,16 +320,17 @@ Vildebeest Road, St Eval, Wadebridge (3-bed semi)  (PL27, St Eval)  https://www.
       nightly rate     +15%                       →    £2,050  (+2,405)
       mortgage rate    +1.00% points (7.19%)      →   -£2,080  (-1,725)
       mortgage rate    +2.00% points (8.19%)      →   -£4,218  (-3,863)
-      operating costs  +20%                       →   -£2,785  (-2,430)
+      variable costs   +20%                       →   -£2,785  (-2,430)
+      variable costs = management, cleaning, utilities, maintenance, insurance; held: platform fee, council tax / business rates, estate charge
     STEADY STATE: operating £19,406 → pre-tax £6,092, tax £4,029, after-tax £2,063
-    STEADY STATE  gross yield 13.6%  net yield 6.8%  cash-on-cash 2.0%, break-even occupancy 41.6%
+    STEADY STATE  gross yield 13.6%  net yield 6.8%  cash-on-cash 2.0%, pre-tax break-even occupancy 41.6%
       rates regime: business rates (would qualify after a year at 208 let nights, if the plan holds)
         met      available nights, last 12 months (owner's plan, once a year has passed): 300 vs 140 required [assumption]
         met      available nights, next 12 months (owner's plan): 300 vs 140 required [assumption]
         met      let nights, last 12 months (projected occupancy, once a year has passed): 208 vs 70 required [published]
     basis: assumption (weakest input); inputs: adr=242 [published 2026-10-13]; occupancy=0.57 [published 2026-10-13]; fx=1.30 [assumption]; management=0.18 [assumption]; cleaning=80 [assumption]
     ! listing does not state whether holiday-let use is permitted; check the title and planning history
-    ! earned income plus rental profit (£60,293) crosses the higher-rate threshold (£50,270); the lender may treat you as a higher-rate taxpayer and apply the 145% cover test
+    ! earned income plus rental profit (£60,293) crosses the higher-rate threshold (£50,270); the income tax above is computed through the bands either way, and Leeds Building Society (holiday let) applies the same cover ratio to both bands, so its test does not change
   SHORT LET  Skipton Building Society  TRK2: excluded, short_let is NOT an accepted use (https://www.skipton-intermediaries.co.uk/criteria/a-z-lending-criteria/a-z-lending-criteria-btl)
   SHORT LET  Skipton Building Society  R2606: excluded, short_let is NOT an accepted use (https://www.skipton-intermediaries.co.uk/criteria/a-z-lending-criteria/a-z-lending-criteria-btl)
   SHORT LET  Skipton Building Society  R2605: excluded, short_let is NOT an accepted use (https://www.skipton-intermediaries.co.uk/criteria/a-z-lending-criteria/a-z-lending-criteria-btl)

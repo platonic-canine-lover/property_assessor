@@ -68,10 +68,11 @@ def render(results: list[Result], comps: dict[str, ComparablesResult] | None = N
             lines.append(
                 f"    loan {gbp(e.loan)} at {r.product.rate.value:.2%} ({r.product.rate.basis}), LTV {e.ltv:.0%}, stress {e.stress_rate:.2%}"
             )
-            verdict = "ELIGIBLE" if e.eligible else "NOT ELIGIBLE"
+            verdict = ("ELIGIBLE, CONDITIONAL" if e.conditional else "ELIGIBLE") if e.eligible else "NOT ELIGIBLE"
             lines.append(f"    {verdict}")
             for chk in e.checks:
-                lines.append(f"      {'ok  ' if chk.passed else 'FAIL'} {chk.name}: {chk.detail}")
+                mark = "cond" if chk.conditional else ("ok  " if chk.passed else "FAIL")
+                lines.append(f"      {mark} {chk.name}: {chk.detail}")
             if r.missing:
                 lines.append(f"    returns not computed: missing {', '.join(r.missing)}")
                 continue
@@ -100,6 +101,8 @@ def render(results: list[Result], comps: dict[str, ComparablesResult] | None = N
                 )
                 for row in sens.rows:
                     lines.append(f"      {row.input:16} {row.change:26} → {gbp(row.after_tax_cash_flow):>9}  ({row.delta:+,.0f})")
+                if sens.varied_costs:
+                    lines.append(f"      variable costs = {', '.join(sens.varied_costs)}; held: {', '.join(sens.held_costs)}")
             for sc in a.scenarios:
                 ys = sc.year
                 lines.append(
@@ -114,7 +117,7 @@ def render(results: list[Result], comps: dict[str, ComparablesResult] | None = N
 
 
 def returns_lines(strategy: str, label: str, ret) -> list[str]:  # type: ignore[no-untyped-def]
-    be = f", break-even occupancy {pct(ret.break_even_occupancy)}" if strategy == "short_let" else ""
+    be = f", pre-tax break-even occupancy {pct(ret.break_even_occupancy)}" if strategy == "short_let" else ""
     out = [f"    {label}  gross yield {pct(ret.gross_yield)}  net yield {pct(ret.net_yield)}  cash-on-cash {pct(ret.cash_on_cash)}{be}"]
     if ret.rates is not None:
         out.append(f"      rates regime: {ret.rates.regime.replace('_', ' ')} ({ret.rates.reason})")
@@ -141,7 +144,7 @@ def rank_table(results: list[Result]) -> str:
         a = r.assessment
         assert a is not None
         out.append(
-            f"{r.candidate.label[:34]:34} {r.strategy:10} {(r.lender.name + ' ' + r.product.code)[:46]:46} {'yes' if r.eligibility.eligible else 'NO':5} "
+            f"{r.candidate.label[:34]:34} {r.strategy:10} {(r.lender.name + ' ' + r.product.code)[:46]:46} {('cond' if r.eligibility.conditional else 'yes') if r.eligibility.eligible else 'NO':5} "
             f"{gbp(a.cash_in.total):>10} {gbp(a.year.after_tax_cash_flow):>10} {pct(a.returns.cash_on_cash):>8} "
             f"{(pct(a.scenarios[0].returns.cash_on_cash) if a.scenarios else '-'):>8} {pct(a.returns.gross_yield):>6} {pct(a.returns.net_yield):>6} {a.returns.provenance.basis:10}"
         )

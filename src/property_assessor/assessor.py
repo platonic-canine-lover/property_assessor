@@ -133,7 +133,6 @@ def run(inputs: Inputs, strategies: tuple[Strategy, ...] = ("long_let", "short_l
                                 basis=Provenance.of(adr=adr.value, occ=occ.value, fx=inputs.costs.fx.usd_per_gbp).basis,
                                 source="projected gross short-let income / 12 (a lender will want a letting agent's seasonal projection)",
                             )
-                    elig = assess(lender, product, cand, inputs.applicant, strategy, available)
                     if not missing:
                         rate = product.rate.value
                         cash = cash_in(cand, inputs.applicant, inputs.tax, inputs.costs, product.fee, strategy)
@@ -177,6 +176,14 @@ def run(inputs: Inputs, strategies: tuple[Strategy, ...] = ("long_let", "short_l
                                         ),
                                     )
                                 )
+                        # The lender's cover test depends on the tax band, and the band depends on
+                        # the rental profit this year produces: compute the year first, then ask.
+                        profit = year.gross_income - year.operating_costs
+                        it = inputs.tax.income_tax
+                        higher_from = it.personal_allowance + Decimal(it.bands[0].up_to or 0)
+                        total_income = inputs.applicant.gross_earned_income.value + profit
+                        crosses = inputs.applicant.tax_band == "basic" and total_income > higher_from
+                        elig = assess(lender, product, cand, inputs.applicant, strategy, available, band_uncertain=crosses)
                         warnings: list[str] = []
                         if cand.holiday_let_restriction == "none_stated" and strategy == "short_let":
                             warnings.append(
@@ -188,14 +195,17 @@ def run(inputs: Inputs, strategies: tuple[Strategy, ...] = ("long_let", "short_l
                             )
                         if not elig.eligible:
                             warnings.append("NOT ELIGIBLE with this lender and product; returns shown for information only")
-                        profit = year.gross_income - year.operating_costs
-                        it = inputs.tax.income_tax
-                        higher_from = it.personal_allowance + Decimal(it.bands[0].up_to or 0)
-                        total_income = inputs.applicant.gross_earned_income.value + profit
-                        if inputs.applicant.tax_band == "basic" and total_income > higher_from:
+                        if crosses and elig.required_rent_monthly_higher is not None:
                             warnings.append(
                                 f"earned income plus rental profit (£{total_income:,.0f}) crosses the higher-rate threshold "
-                                f"(£{higher_from:,.0f}); the lender may treat you as a higher-rate taxpayer and apply the 145% cover test"
+                                f"(£{higher_from:,.0f}); {lender.name} applies a higher cover ratio to higher-rate taxpayers, "
+                                f"so the rental cover result above is tested against both ratios"
+                            )
+                        elif crosses:
+                            warnings.append(
+                                f"earned income plus rental profit (£{total_income:,.0f}) crosses the higher-rate threshold "
+                                f"(£{higher_from:,.0f}); the income tax above is computed through the bands either way, and "
+                                f"{lender.name} applies the same cover ratio to both bands, so its test does not change"
                             )
                         assessment = Assessment(
                             candidate_id=cand.id,
@@ -210,5 +220,7 @@ def run(inputs: Inputs, strategies: tuple[Strategy, ...] = ("long_let", "short_l
                             sensitivity=sens,
                             warnings=warnings,
                         )
+                    else:
+                        elig = assess(lender, product, cand, inputs.applicant, strategy, available)
                     out.append(Result(cand, strategy, lender, product, elig, assessment, missing))
     return out
