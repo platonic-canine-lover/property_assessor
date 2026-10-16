@@ -13,6 +13,7 @@ long_let:
   tenant_pays_utilities: true
   safety_certificates:     { value: "250",  basis: assumption, source: "gas safety, EICR amortised, legionella" }
 short_let:
+  planned_available_nights_next_12m: { value: 300, basis: assumption, source: "owner intends to market the property most of the year; the business-rates test needs at least 140" }
   management_fee_fraction: { value: "0.18", basis: assumption, source: "Cornwall holiday-let agency full-management fee, typical range 15-22%" }
   platform_fee_fraction:   { value: "0.03", basis: assumption, source: "Airbnb host-only fee for most hosts; the 15% host-only option exists" }
   cleaning_per_stay:       { value: "80",   basis: assumption, source: "changeover clean for a 2-3 bed, Cornwall" }

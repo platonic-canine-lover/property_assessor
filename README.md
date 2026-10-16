@@ -38,15 +38,16 @@ uv venv && uv pip install -e ".[dev]"
 .venv/bin/python -m property_assessor.cli --json     # machine-readable
 ```
 
-What the run says (ranked by cash-on-cash, eligible first):
+What the run says (ranked by year-1 cash-on-cash, eligible first; "s/s" is
+the steady state once a year of letting is on record):
 
 ```
-candidate                          strategy   lender / product                               elig     cash in  after-tax     CoC  gross    net basis
-Vildebeest Road, St Eval, Wadebrid short_let  Leeds Building Society (holiday let) HL5-75    yes     £104,150     £4,874    4.7%  13.6%   6.8% assumption
-Vildebeest Road, St Eval, Wadebrid short_let  Leeds Building Society (holiday let) HL2-75    yes     £104,150     £4,344    4.2%  13.6%   6.8% assumption
-Vildebeest Road, St Eval, Wadebrid long_let   Skipton Building Society TRK2                  NO       £93,145      -£788   -0.8%   4.2%   3.0% assumption
-Little Carharrack, Redruth (2-bed  short_let  Leeds Building Society (holiday let) HL5-75    NO      £179,400    -£3,409   -1.9%   7.8%   4.0% assumption
-Little Carharrack, Redruth (2-bed  long_let   Skipton Building Society TRK2                  NO      £168,395    -£9,257   -5.5%   2.0%   1.5% assumption
+candidate                          strategy   lender / product                               elig     cash in  after-tax  CoC yr1  CoC s/s  gross    net basis
+Vildebeest Road, St Eval, Wadebrid short_let  Leeds Building Society (holiday let) HL5-75    yes     £104,150      -£355    -0.3%     2.0%  13.6%   5.4% assumption
+Vildebeest Road, St Eval, Wadebrid short_let  Leeds Building Society (holiday let) HL2-75    yes     £104,150      -£885    -0.8%     1.5%  13.6%   5.4% assumption
+Vildebeest Road, St Eval, Wadebrid long_let   Skipton Building Society TRK2                  NO       £93,145    -£1,475    -1.6%        -   4.2%   3.0% assumption
+Little Carharrack, Redruth (2-bed  short_let  Leeds Building Society (holiday let) HL5-75    NO      £179,400   -£10,001    -5.6%    -2.6%   7.8%   3.0% assumption
+Little Carharrack, Redruth (2-bed  long_let   Skipton Building Society TRK2                  NO      £168,395    -£9,682    -5.8%        -   2.0%   1.5% assumption
 ```
 
 Four findings, each of which the tool prints with the arithmetic behind it:
@@ -65,10 +66,15 @@ Four findings, each of which the tool prints with the arithmetic behind it:
   it misses Leeds' cover by £31 to £624 a month even on the county-wide
   ADR. Whatever it is worth as a home, it is not a 75%-LTV investment.
 - **The St Eval house fails Skipton as a long let and clears Leeds as a
-  short let.** Long let: £1,077 ONS rent against £1,434 required (the
-  gap closes if a letting agent will evidence higher). Short let: eligible
-  on both Leeds products, cash-on-cash 4.2% to 4.7% after tax, break-even
-  occupancy about 42%.
+  short let, but year 1 is roughly break-even.** Long let: £1,077 ONS rent
+  against £1,434 required (the gap closes if a letting agent will evidence
+  higher). Short let: eligible on both Leeds products, but with no letting
+  history the property pays doubled council tax in year 1 (£4,030), and the
+  £19k of rental profit stacked on £45k of earned income runs into the 40%
+  band, so after-tax cash flow is about zero. Once a year of letting is on
+  record and business rates apply, cash-on-cash is 1.5% to 2.0%. Break-even
+  occupancy is 52% in year 1 and 42% thereafter, against a county average
+  of 57%.
 - **The short-let figures are county-wide and the report says so on every
   line.** AirDNA's public Cornwall figures (ADR $242, 57% occupancy,
   trailing twelve months to September 2026) are dominated by coastal
@@ -77,19 +83,40 @@ Four findings, each of which the tool prints with the arithmetic behind it:
   projection for St Eval specifically, which is also what Leeds will ask
   for; the config takes either.
 
-## The Cornwall cliff
+## The Cornwall cliff, and why a projection cannot clear it
 
 Cornwall charges a 100% council tax premium on second homes (since 1 April
-2025). A holiday let escapes it only by qualifying for business rates: available
-140 nights and actually let 70 nights in the last twelve months. At 69 let
-nights a band B property pays £4,030 a year; at 70 it pays business rates,
-which with small business rate relief is assumed here to be £0. The model
-applies the rule on the let-nights figure and prints which side of the
-line the candidate is on; a test holds the cliff to within one night.
+2025). A holiday let escapes it only by qualifying for business rates, and
+the test is historical: available 140 nights in the last twelve months,
+available 140 nights in the next twelve, and actually let 70 nights in the
+last twelve. A projection of next year's occupancy says nothing about last
+year. So the model treats the three conditions separately (`rates.py`):
 
-The furnished-holiday-let tax regime ended in April 2025, so short-let
-income is taxed as ordinary property income here: interest is not
-deductible, a 20% credit applies instead.
+- **Year 1** rests on evidence the candidate carries (`short_let_history`,
+  the seller's booking records). With none, council tax plus the premium
+  applies and the report lists which conditions have no evidence.
+- **Steady state** shows the regime once a full year at the projected
+  occupancy is on record, if the owner's planned availability meets the
+  threshold. For a band B property that is the difference between £4,030
+  and (with small business rate relief assumed) £0 a year.
+
+The break-even occupancy is computed per regime, with the regime held
+fixed, because within one regime cash flow is monotone in occupancy and the
+bisection is sound; across the threshold it is not, and the earlier version
+of this tool got that wrong (see `docs/review-log.md`).
+
+## Tax
+
+Rental profit (income less operating costs, interest excluded) stacks on
+top of earned income and is taxed through the 2026/27 bands with the
+personal-allowance taper, so a profit that crosses £50,270 pays 40% on the
+part above. Mortgage interest is not deductible; a 20% credit applies,
+limited to the lower of the interest, the property profit and the tax due.
+Two consequences the report shows rather than hides: a property with a cash
+loss after interest can still owe tax, and a basic-rate earner can be pushed
+into the higher band by the rental profit itself (the report warns, since
+the lender may then apply the 145% cover test). The furnished-holiday-let
+regime ended in April 2025, so short-let income is treated the same way.
 
 ## What is published and what is assumed
 
@@ -135,7 +162,8 @@ src/property_assessor/
   returns.py         SDLT, cash in, long-let and short-let year, tax, returns, break-even
   assessor.py        candidates × strategies × products
   report.py, cli.py
-tests/               25 tests: lender maths, SDLT, year arithmetic, the Cornwall cliff, break-even, end to end
+  rates.py           the three business-rates conditions, year 1 vs steady state
+tests/               32 tests: lender maths, SDLT, year arithmetic, the three rates conditions, tax banding and the Section 24 outcome, break-even per regime, end to end
 docs/example-output.txt
 ```
 

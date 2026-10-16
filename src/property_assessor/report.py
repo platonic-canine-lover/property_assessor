@@ -65,17 +65,30 @@ def render(results: list[Result]) -> str:
             lines.append(
                 f"    mortgage interest {gbp(y.mortgage_interest)}  →  pre-tax {gbp(y.pre_tax_cash_flow)}, tax {gbp(y.tax)}, after-tax {gbp(y.after_tax_cash_flow)}"
             )
-            be = f", break-even occupancy {pct(ret.break_even_occupancy)}" if r.strategy == "short_let" else ""
-            regime = f"  [{ret.council_tax_regime}]" if ret.council_tax_regime else ""
-            lines.append(
-                f"    RETURNS  gross yield {pct(ret.gross_yield)}  net yield {pct(ret.net_yield)}  cash-on-cash {pct(ret.cash_on_cash)}{be}{regime}"
-            )
-            lines.append(f"    basis: {ret.provenance.basis} (weakest input); inputs: " + "; ".join(ret.provenance.inputs))
+            lines.extend(returns_lines(r.strategy, "YEAR 1" if r.strategy == "short_let" else "RETURNS", ret))
+            for sc in a.scenarios:
+                ys = sc.year
+                lines.append(
+                    f"    {sc.name.upper()}: operating {gbp(ys.operating_costs)} → pre-tax {gbp(ys.pre_tax_cash_flow)}, tax {gbp(ys.tax)}, after-tax {gbp(ys.after_tax_cash_flow)}"
+                )
+                lines.extend(returns_lines(r.strategy, sc.name.upper(), sc.returns))
             for w in a.warnings:
                 lines.append(f"    ! {w}")
     lines.append("=" * 100)
     lines.append(rank_table(results))
     return "\n".join(lines)
+
+
+def returns_lines(strategy: str, label: str, ret) -> list[str]:  # type: ignore[no-untyped-def]
+    be = f", break-even occupancy {pct(ret.break_even_occupancy)}" if strategy == "short_let" else ""
+    out = [f"    {label}  gross yield {pct(ret.gross_yield)}  net yield {pct(ret.net_yield)}  cash-on-cash {pct(ret.cash_on_cash)}{be}"]
+    if ret.rates is not None:
+        out.append(f"      rates regime: {ret.rates.regime.replace('_', ' ')} ({ret.rates.reason})")
+        for c in ret.rates.conditions:
+            actual = "no evidence" if c.actual is None else str(c.actual)
+            out.append(f"        {c.status:8} {c.name}: {actual} vs {c.required} required [{c.basis}]")
+    out.append(f"    basis: {ret.provenance.basis} (weakest input); inputs: " + "; ".join(ret.provenance.inputs))
+    return out
 
 
 def rank_table(results: list[Result]) -> str:
@@ -84,17 +97,18 @@ def rank_table(results: list[Result]) -> str:
         return "No returns computed."
     rows.sort(key=lambda r: (not r.eligibility.eligible, -r.assessment.returns.cash_on_cash))  # type: ignore[union-attr]
     out = [
-        "RANKED BY CASH-ON-CASH (eligible first). Every figure above is an estimate resting on the listed inputs.",
+        "RANKED BY YEAR-1 CASH-ON-CASH (eligible first). CoC s/s = steady state once a year of letting is on record (short let only). Every figure is an estimate resting on the listed inputs.",
         "",
     ]
     out.append(
-        f"{'candidate':34} {'strategy':10} {'lender / product':46} {'elig':5} {'cash in':>10} {'after-tax':>10} {'CoC':>7} {'gross':>6} {'net':>6} {'basis':10}"
+        f"{'candidate':34} {'strategy':10} {'lender / product':46} {'elig':5} {'cash in':>10} {'after-tax':>10} {'CoC yr1':>8} {'CoC s/s':>8} {'gross':>6} {'net':>6} {'basis':10}"
     )
     for r in rows:
         a = r.assessment
         assert a is not None
         out.append(
             f"{r.candidate.label[:34]:34} {r.strategy:10} {(r.lender.name + ' ' + r.product.code)[:46]:46} {'yes' if r.eligibility.eligible else 'NO':5} "
-            f"{gbp(a.cash_in.total):>10} {gbp(a.year.after_tax_cash_flow):>10} {pct(a.returns.cash_on_cash):>7} {pct(a.returns.gross_yield):>6} {pct(a.returns.net_yield):>6} {a.returns.provenance.basis:10}"
+            f"{gbp(a.cash_in.total):>10} {gbp(a.year.after_tax_cash_flow):>10} {pct(a.returns.cash_on_cash):>8} "
+            f"{(pct(a.scenarios[0].returns.cash_on_cash) if a.scenarios else '-'):>8} {pct(a.returns.gross_yield):>6} {pct(a.returns.net_yield):>6} {a.returns.provenance.basis:10}"
         )
     return "\n".join(out)

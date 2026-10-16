@@ -28,10 +28,19 @@ class Sdlt(BaseModel):
     non_resident_surcharge: Decimal
 
 
+class IncomeBand(BaseModel):
+    up_to: int | None
+    rate: Decimal
+
+
 class IncomeTax(BaseModel):
     source: str
     as_of: date
     basis: Basis
+    tax_year: str
+    personal_allowance: Decimal
+    personal_allowance_taper_from: Decimal
+    bands: list[IncomeBand]
     marginal_rate: dict[TaxBand, Decimal]
     finance_cost_credit: Decimal
     finance_cost_credit_source: str
@@ -111,6 +120,7 @@ class LongLetCosts(BaseModel):
 
 
 class ShortLetCosts(BaseModel):
+    planned_available_nights_next_12m: Sourced[int]
     management_fee_fraction: SDec
     platform_fee_fraction: SDec
     cleaning_per_stay: SDec

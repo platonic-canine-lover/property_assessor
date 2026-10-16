@@ -15,7 +15,14 @@ income_tax:
   source: https://www.gov.uk/income-tax-rates
   as_of: 2026-10-16
   basis: published
-  marginal_rate: { basic: "0.20", higher: "0.40" }
+  tax_year: "2026/27"
+  personal_allowance: 12570
+  personal_allowance_taper_from: 100000     # £1 lost per £2 above this; nil at £125,140
+  bands:                                    # taxable income (after allowance) up to → rate; rental profit stacks on earned income
+    - { up_to: 37700,  rate: "0.20" }       # £12,571 to £50,270
+    - { up_to: 112570, rate: "0.40" }       # £50,271 to £125,140
+    - { up_to: null,   rate: "0.45" }
+  marginal_rate: { basic: "0.20", higher: "0.40" }   # kept for reference; tax is now computed on the bands above
   # Individual landlords cannot deduct mortgage interest; they get a 20% tax credit on it instead.
   finance_cost_credit: "0.20"
   finance_cost_credit_source: https://www.gov.uk/guidance/changes-to-tax-relief-for-residential-landlords-how-its-worked-out-including-case-studies

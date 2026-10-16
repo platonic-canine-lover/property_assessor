@@ -15,6 +15,20 @@ PropertyType = Literal["detached", "semi_detached", "terraced", "flat", "bungalo
 Tenure = Literal["freehold", "leasehold"]
 
 
+class ShortLetHistory(BaseModel):
+    """What the property actually did in the last 12 months, if anyone can evidence it.
+
+    The business-rates test is historical: nights available and nights let in
+    the previous year. A purchase usually has no such evidence unless the seller
+    ran it as a holiday let and can show the bookings.
+    """
+
+    model_config = ConfigDict(frozen=True)
+
+    available_nights_last_12m: Sourced[int]
+    let_nights_last_12m: Sourced[int]
+
+
 class Candidate(BaseModel):
     """One property under consideration, as the listing describes it."""
 
@@ -38,6 +52,7 @@ class Candidate(BaseModel):
     estate_charge_monthly: Sourced[Decimal] | None = None
     private_water_or_drainage: bool | None = None
     holiday_let_restriction: Literal["none_stated", "restricted", "permitted"] = "none_stated"
+    short_let_history: ShortLetHistory | None = Field(default=None, description="None = no evidence of past letting")
     notes: list[str] = Field(default_factory=list)
 
 

@@ -20,9 +20,11 @@ from property_assessor.config import (
 )
 from property_assessor.lenders import Eligibility, Lender, Product, assess, load_lenders
 from property_assessor.models import Applicant, Candidate, Strategy
+from property_assessor.rates import steady_state, year_one
 from property_assessor.returns import (
     Assessment,
     Returns,
+    Scenario,
     break_even_occupancy,
     cash_in,
     long_let_year,
@@ -114,17 +116,42 @@ def run(inputs: Inputs, strategies: tuple[Strategy, ...] = ("long_let", "short_l
                     if not missing:
                         rate = product.rate.value
                         cash = cash_in(cand, inputs.applicant, inputs.tax, inputs.costs, product.fee, strategy)
+                        scenarios: list[Scenario] = []
                         if strategy == "long_let":
                             assert rent is not None
                             year = long_let_year(cand, inputs.applicant, rent, loan, rate, inputs.tax, inputs.costs)
                             ret: Returns = returns(cand.asking_price.value, year, cash, year.provenance)
                         else:
                             assert adr is not None and occ is not None
-                            year, regime = short_let_year(
-                                cand, inputs.applicant, adr, occ, loan, rate, inputs.tax, inputs.costs, inputs.rules
+                            sl = inputs.costs.short_let
+                            planned = sl.planned_available_nights_next_12m
+                            projected_nights = Decimal(365) * occ.value.value
+                            # Year 1 rests on evidence of past letting; with none, council tax + premium applies.
+                            y1 = year_one(cand, inputs.rules, planned.value, planned.basis)
+                            year = short_let_year(cand, inputs.applicant, adr, occ, loan, rate, inputs.tax, inputs.costs, inputs.rules, y1)
+                            be1 = break_even_occupancy(
+                                cand, inputs.applicant, adr, occ, loan, rate, inputs.tax, inputs.costs, inputs.rules, y1
                             )
-                            be = break_even_occupancy(cand, inputs.applicant, adr, occ, loan, rate, inputs.tax, inputs.costs, inputs.rules)
-                            ret = returns(cand.asking_price.value, year, cash, year.provenance, break_even=be, regime=regime)
+                            ret = returns(cand.asking_price.value, year, cash, year.provenance, break_even=be1, decision=y1)
+                            # Steady state: what the regime becomes after a year at the projected occupancy, if the plan holds.
+                            ss = steady_state(projected_nights, inputs.rules, planned.value, planned.basis, occ.value.basis)
+                            scenarios = []
+                            if ss.regime != y1.regime:
+                                y_ss = short_let_year(
+                                    cand, inputs.applicant, adr, occ, loan, rate, inputs.tax, inputs.costs, inputs.rules, ss
+                                )
+                                be_ss = break_even_occupancy(
+                                    cand, inputs.applicant, adr, occ, loan, rate, inputs.tax, inputs.costs, inputs.rules, ss
+                                )
+                                scenarios.append(
+                                    Scenario(
+                                        name="steady state",
+                                        year=y_ss,
+                                        returns=returns(
+                                            cand.asking_price.value, y_ss, cash, y_ss.provenance, break_even=be_ss, decision=ss
+                                        ),
+                                    )
+                                )
                         warnings: list[str] = []
                         if cand.holiday_let_restriction == "none_stated" and strategy == "short_let":
                             warnings.append(
@@ -136,6 +163,15 @@ def run(inputs: Inputs, strategies: tuple[Strategy, ...] = ("long_let", "short_l
                             )
                         if not elig.eligible:
                             warnings.append("NOT ELIGIBLE with this lender and product; returns shown for information only")
+                        profit = year.gross_income - year.operating_costs
+                        it = inputs.tax.income_tax
+                        higher_from = it.personal_allowance + Decimal(it.bands[0].up_to or 0)
+                        total_income = inputs.applicant.gross_earned_income.value + profit
+                        if inputs.applicant.tax_band == "basic" and total_income > higher_from:
+                            warnings.append(
+                                f"earned income plus rental profit (£{total_income:,.0f}) crosses the higher-rate threshold "
+                                f"(£{higher_from:,.0f}); the lender may treat you as a higher-rate taxpayer and apply the 145% cover test"
+                            )
                         assessment = Assessment(
                             candidate_id=cand.id,
                             strategy=strategy,
@@ -145,6 +181,7 @@ def run(inputs: Inputs, strategies: tuple[Strategy, ...] = ("long_let", "short_l
                             cash_in=cash,
                             year=year,
                             returns=ret,
+                            scenarios=scenarios,
                             warnings=warnings,
                         )
                     out.append(Result(cand, strategy, lender, product, elig, assessment, missing))
