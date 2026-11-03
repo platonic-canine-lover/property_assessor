@@ -12,8 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v5
-      - run: uv venv --python ${{ matrix.python }}
-      - run: uv pip install -e ".[dev]"
+      # Install exactly what uv.lock pins; fails if the lock is out of date.
+      - run: uv sync --locked --all-extras --python ${{ matrix.python }}
       - run: .venv/bin/ruff check .
       - run: .venv/bin/ruff format --check .
       - run: .venv/bin/mypy

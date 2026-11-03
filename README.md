@@ -33,7 +33,7 @@ strategy and each lender product it answers three questions in order:
 
 ```
 
-uv venv && uv pip install -e ".[dev]"
+uv sync --all-extras                                 # exactly the versions in uv.lock
 .venv/bin/python -m property_assessor.cli            # full report (docs/example-output.txt)
 .venv/bin/python -m property_assessor.cli --json     # machine-readable
 ```

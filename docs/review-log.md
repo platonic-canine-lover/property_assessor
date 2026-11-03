@@ -129,3 +129,11 @@ it is now -0.4% to -0.8%. The README's findings were rewritten from the
 regenerated example.
 
 63 tests.
+
+## Fresh-clone check (3 November 2026)
+
+**Installs ignored the lockfile.** The README and CI used `uv pip install
+-e`, which resolves the newest releases rather than `uv.lock`. Fixed: both
+use `uv sync` (`--locked` in CI, so a stale lock fails the build). A fresh
+clone was checked end to end: install, lint, types, 63 tests, and the CLI
+output matching `docs/example-output.txt` exactly.
