@@ -122,7 +122,7 @@ def premium(rules):
 
 
 def rated(rules):
-    return steady_state(Decimal("208"), rules, 300, "assumption", "published")  # would qualify
+    return steady_state(Decimal("171"), rules, 300, "assumption", "published")  # would qualify
 
 
 class TestShortLet:
@@ -131,13 +131,24 @@ class TestShortLet:
 
     def test_year_arithmetic_under_business_rates(self, tax, costs, buyer, rules):
         y = short_let_year(cand(), buyer, self.adr, self.occ, Decimal("213750"), Decimal("0.0650"), tax, costs, rules, rated(rules))
-        # ADR 242/1.30 = 186.1538… × 365 × 0.57 = 208.05 nights
-        assert y.gross_income == Decimal("38729.31")
+        # ADR 242/1.30 = 186.1538… × (300 available × 0.57 = 171 booked nights)
+        assert y.gross_income == Decimal("31832.31")
+        assert "171 nights (57% occupancy of 300 available" in y.income_lines[0].label
         ct = next(li for li in y.operating_lines if "business rates" in li.label)
         assert ct.amount == Decimal("0") and ct.basis == "assumption"
 
+    def test_occupancy_applies_to_available_nights_not_the_calendar_year(self, tax, costs, buyer, rules):
+        # AirDNA occupancy = booked / available. Halving the available nights halves the income;
+        # a 365-night year would have been unchanged, which was the bug.
+        full = short_let_year(cand(), buyer, self.adr, self.occ, Decimal("213750"), Decimal("0.0650"), tax, costs, rules, rated(rules))
+        sl = costs.short_let
+        half_nights = sl.planned_available_nights_next_12m.model_copy(update={"value": 150})
+        half_costs = costs.model_copy(update={"short_let": sl.model_copy(update={"planned_available_nights_next_12m": half_nights})})
+        half = short_let_year(cand(), buyer, self.adr, self.occ, Decimal("213750"), Decimal("0.0650"), tax, half_costs, rules, rated(rules))
+        assert abs(half.gross_income * 2 - full.gross_income) <= Decimal("0.01")  # penny rounding per line
+
     def test_year_one_without_history_pays_doubled_council_tax_even_at_high_occupancy(self, tax, costs, buyer, rules):
-        # The projection says 208 let nights; the historical test has no evidence, so the premium applies.
+        # The projection says 171 let nights; the historical test has no evidence, so the premium applies.
         y = short_let_year(
             cand(band="B"), buyer, self.adr, self.occ, Decimal("213750"), Decimal("0.0650"), tax, costs, rules, premium(rules)
         )

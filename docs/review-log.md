@@ -107,3 +107,25 @@ worked example uses £45,000 of earned income and is unaffected.
 repository are mine; the wording now says so in the first person.
 
 62 tests.
+
+## Review 5: independent code scan (commit `dadc20f` reviewed)
+
+**Short-let income was overstated by 22%.** AirDNA's occupancy is booked
+nights over AVAILABLE nights, but the model applied it to 365 nights
+instead of the 300 the owner plans to make available
+(`planned_available_nights_next_12m`, already in `costs.yaml` and used
+only for the business-rates test). 365 x 0.57 gave 208 booked nights
+instead of 171. Gross income, the lender cover test, cash-on-cash, the
+cleaning bill and the business-rates projection all inherited it. Fixed:
+one function, `booked_nights()`, used everywhere; the income line now
+reads "171 nights (57% occupancy of 300 available)"; the planned-nights
+assumption is part of the figure's provenance. A test halves the available
+nights and checks the income halves, which the old code would have
+failed.
+
+This changed the conclusion. The St Eval short let's steady-state
+cash-on-cash was +1.5% to +2.0%, the only positive figure in the report;
+it is now -0.4% to -0.8%. The README's findings were rewritten from the
+regenerated example.
+
+63 tests.

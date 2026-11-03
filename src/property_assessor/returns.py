@@ -35,7 +35,16 @@ from property_assessor.rates import RatesDecision
 from property_assessor.sourced import Provenance, Sourced
 
 P = Decimal("0.01")
-NIGHTS = Decimal("365")
+
+
+def booked_nights(costs: CostConfig, occupancy: Decimal) -> Decimal:
+    """Nights actually let in a year.
+
+    AirDNA's occupancy is booked nights over AVAILABLE nights, so it applies
+    to the nights the owner makes available, not to the calendar year.
+    365 x occupancy overstates income by 365/available (22% at 300 nights).
+    """
+    return Decimal(costs.short_let.planned_available_nights_next_12m.value) * occupancy
 
 
 def money(d: Decimal) -> Decimal:
@@ -231,12 +240,13 @@ def short_let_year(
     c = costs.short_let
     occ = occupancy_override if occupancy_override is not None else occupancy.value.value
     adr_gbp = adr_usd.value.value / costs.fx.usd_per_gbp.value
-    nights = NIGHTS * occ
+    nights = booked_nights(costs, occ)
+    available_nights = c.planned_available_nights_next_12m.value
     gross = money(adr_gbp * nights)
     stays = (nights / c.average_stay_nights.value).quantize(Decimal("1"), rounding=ROUND_HALF_UP)
     income_lines = [
         Line(
-            label=f"ADR ${adr_usd.value.value:,.0f} ≈ £{adr_gbp:,.0f} × {nights:.0f} nights ({occ:.0%} occupancy, {occupancy.granularity} figure)",
+            label=f"ADR ${adr_usd.value.value:,.0f} ≈ £{adr_gbp:,.0f} × {nights:.0f} nights ({occ:.0%} occupancy of {available_nights} available, {occupancy.granularity} figure)",
             amount=gross,
             basis=adr_usd.value.basis,
             note=f"{adr_usd.value.source}; FX {costs.fx.usd_per_gbp}",
@@ -314,6 +324,7 @@ def short_let_year(
             adr=adr_usd.value,
             occupancy=occupancy.value,
             fx=costs.fx.usd_per_gbp,
+            available_nights=c.planned_available_nights_next_12m,
             management=c.management_fee_fraction,
             cleaning=c.cleaning_per_stay,
         ),

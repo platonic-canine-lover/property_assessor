@@ -43,11 +43,11 @@ the steady state once a year of letting is on record):
 
 ```
 candidate                          strategy   lender / product                               elig     cash in  after-tax  CoC yr1  CoC s/s  gross    net basis
-Vildebeest Road, St Eval, Wadebrid short_let  Leeds Building Society (holiday let) HL5-75    yes     £104,150      -£355    -0.3%     2.0%  13.6%   5.4% assumption
-Vildebeest Road, St Eval, Wadebrid short_let  Leeds Building Society (holiday let) HL2-75    yes     £104,150      -£885    -0.8%     1.5%  13.6%   5.4% assumption
+Vildebeest Road, St Eval, Wadebrid short_let  Leeds Building Society (holiday let) HL5-75    yes     £104,150    -£3,174    -3.0%    -0.4%  11.2%   4.0% assumption
+Vildebeest Road, St Eval, Wadebrid short_let  Leeds Building Society (holiday let) HL2-75    yes     £104,150    -£3,837    -3.7%    -0.8%  11.2%   4.0% assumption
 Vildebeest Road, St Eval, Wadebrid long_let   Skipton Building Society TRK2                  NO       £93,145    -£1,475    -1.6%        -   4.2%   3.0% assumption
-Little Carharrack, Redruth (2-bed  short_let  Leeds Building Society (holiday let) HL5-75    NO      £179,400   -£10,001    -5.6%    -2.6%   7.8%   3.0% assumption
 Little Carharrack, Redruth (2-bed  long_let   Skipton Building Society TRK2                  NO      £168,395    -£9,682    -5.8%        -   2.0%   1.5% assumption
+Little Carharrack, Redruth (2-bed  short_let  Leeds Building Society (holiday let) HL5-75    NO      £179,400   -£13,232    -7.4%    -5.3%   6.4%   2.2% assumption
 ```
 
 Four findings, each of which the tool prints with the arithmetic behind it:
@@ -63,18 +63,22 @@ Four findings, each of which the tool prints with the arithmetic behind it:
   interest: £2,516 a month. ONS's Cornwall average for a two-bed is £880.
   It is also a 2024 new build, and Skipton caps new builds with a developer
   incentive at 70% LTV until the incentive is ruled out. As a holiday let
-  it misses Leeds' cover by £31 to £624 a month even on the county-wide
-  ADR. Whatever it is worth as a home, it is not a 75%-LTV investment.
+  it misses Leeds' cover by £605 to £1,199 a month even on the county-wide
+  ADR, and would need 94% to 98% occupancy to break even in year 1. Whatever it is worth as a home, it is not a 75%-LTV investment.
 - **The St Eval house fails Skipton as a long let and clears Leeds as a
-  short let, but year 1 is roughly break-even.** Long let: £1,077 ONS rent
+  short let, but loses money in every year shown.** Long let: £1,077 ONS rent
   against £1,434 required (the gap closes if a letting agent will evidence
   higher). Short let: eligible on both Leeds products, but with no letting
   history the property pays doubled council tax in year 1 (£4,030), and the
-  £19k of rental profit stacked on £45k of earned income runs into the 40%
-  band, so after-tax cash flow is about zero. Once a year of letting is on
-  record and business rates apply, cash-on-cash is 1.5% to 2.0%. Break-even
-  occupancy is 52% in year 1 and 42% thereafter, against a county average
-  of 57%.
+  rental profit stacked on £45k of earned income runs into the 40% band.
+  After tax it loses £3,200 to £3,800 in year 1 (-3.0% to -3.7% on cash
+  in). Once a year of letting is on record and business rates apply it is
+  still slightly negative (-0.4% to -0.8%). Pre-tax break-even occupancy is
+  63% to 65% in year 1 and 51% to 53% thereafter, against a county average
+  of 57%. These figures apply occupancy to the 300 nights the owner plans
+  to make available, which is how AirDNA defines it (booked over
+  available); an earlier version applied it to all 365 nights and
+  overstated income by 22%, which turned this line positive.
 - **The short-let figures are county-wide and the report says so on every
   line.** AirDNA's public Cornwall figures (ADR $242, 57% occupancy,
   trailing twelve months to September 2026) are dominated by coastal
@@ -248,7 +252,7 @@ src/property_assessor/
   rates.py           the three business-rates conditions, year 1 vs steady state
   comparables.py     weighted comparable sales, verdict on the asking price
   sensitivity.py     one-at-a-time sensitivity of a short-let year
-tests/               61 tests: scope enforcement, malformed inputs, locality edge cases, extremes, sensitivity, an independent recomputation of the headline example, comparables weighting and verdicts, lender maths including the conditional cover test, SDLT, year arithmetic, the three rates conditions, tax banding and the Section 24 outcome, break-even per regime, end to end
+tests/               63 tests: scope enforcement, malformed inputs, locality edge cases, extremes, sensitivity, an independent recomputation of the headline example, comparables weighting and verdicts, lender maths including the conditional cover test, SDLT, year arithmetic, the three rates conditions, tax banding and the Section 24 outcome, break-even per regime, end to end
 docs/example-output.txt
 ```
 

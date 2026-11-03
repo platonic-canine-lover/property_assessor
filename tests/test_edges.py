@@ -229,13 +229,13 @@ class TestHeadlineArithmetic:
         def p(x: Decimal) -> Decimal:
             return x.quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
 
-        # gross: 242/1.30 × 365 × 0.57
-        gross = p(Decimal("242") / Decimal("1.30") * Decimal("365") * Decimal("0.57"))
+        # gross: 242/1.30 × 300 available nights × 0.57 occupancy (occupancy is of AVAILABLE nights, not 365)
+        gross = p(Decimal("242") / Decimal("1.30") * Decimal("300") * Decimal("0.57"))
         assert a.year.gross_income == gross
         # interest 6.19% interest-only: 213,750 × 0.0619 = 13,231.125 → 13,231.13 (half-up, not banker's)
         assert a.year.mortgage_interest == p(loan * Decimal("0.0619")) == Decimal("13231.13")
-        # operating: 18% + 3% + cleaning 80×52 + utilities 2,160 + 10% + 600 + council tax 4,030.32 + estate 480
-        stays = (Decimal("365") * Decimal("0.57") / 4).quantize(Decimal("1"), rounding=ROUND_HALF_UP)
+        # operating: 18% + 3% + cleaning 80×43 + utilities 2,160 + 10% + 600 + council tax 4,030.32 + estate 480
+        stays = (Decimal("300") * Decimal("0.57") / 4).quantize(Decimal("1"), rounding=ROUND_HALF_UP)
         op = (
             p(gross * Decimal("0.18"))
             + p(gross * Decimal("0.03"))

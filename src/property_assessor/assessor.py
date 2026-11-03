@@ -27,6 +27,7 @@ from property_assessor.returns import (
     Assessment,
     Returns,
     Scenario,
+    booked_nights,
     break_even_occupancy,
     cash_in,
     long_let_year,
@@ -127,10 +128,15 @@ def run(inputs: Inputs, strategies: tuple[Strategy, ...] = ("long_let", "short_l
                             missing.append("short-let occupancy for this area")
                         if adr is not None and occ is not None:
                             adr_gbp = adr.value.value / inputs.costs.fx.usd_per_gbp.value
-                            monthly = (adr_gbp * Decimal(365) * occ.value.value / 12).quantize(Decimal("0.01"))
+                            monthly = (adr_gbp * booked_nights(inputs.costs, occ.value.value) / 12).quantize(Decimal("0.01"))
                             available = Sourced(
                                 value=monthly,
-                                basis=Provenance.of(adr=adr.value, occ=occ.value, fx=inputs.costs.fx.usd_per_gbp).basis,
+                                basis=Provenance.of(
+                                    adr=adr.value,
+                                    occ=occ.value,
+                                    fx=inputs.costs.fx.usd_per_gbp,
+                                    available_nights=inputs.costs.short_let.planned_available_nights_next_12m,
+                                ).basis,
                                 source="projected gross short-let income / 12 (a lender will want a letting agent's seasonal projection)",
                             )
                     if not missing:
@@ -146,7 +152,7 @@ def run(inputs: Inputs, strategies: tuple[Strategy, ...] = ("long_let", "short_l
                             assert adr is not None and occ is not None
                             sl = inputs.costs.short_let
                             planned = sl.planned_available_nights_next_12m
-                            projected_nights = Decimal(365) * occ.value.value
+                            projected_nights = booked_nights(inputs.costs, occ.value.value)
                             # Year 1 rests on evidence of past letting; with none, council tax + premium applies.
                             y1 = year_one(cand, inputs.rules, planned.value, planned.basis)
                             year = short_let_year(cand, inputs.applicant, adr, occ, loan, rate, inputs.tax, inputs.costs, inputs.rules, y1)
